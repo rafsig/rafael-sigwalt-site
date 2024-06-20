@@ -1,0 +1,9 @@
+[
+    {
+        "title":"Personal Website - front-end",
+        "description":"The website you are currently visiting that showcases my knowledge and experiences",
+        "imageUrl":"/images/website-cover.png",
+        "git":"#",
+        "technologies":["React", "TypeScript", "HTML", "CSS", "Styled Components"]
+    }
+]
