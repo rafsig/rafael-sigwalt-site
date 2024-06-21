@@ -25,7 +25,6 @@ const WorkExperienceDescription = styled.p`
 `;
 
 const WorkExperience = () => {
-    console.log(workExperience);
     return (
     <Section id="WorkExperience" title="WorkExperience" mode="white">
         { workExperience.map( experience => (
