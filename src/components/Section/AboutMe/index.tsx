@@ -40,7 +40,9 @@ const AboutMe = () => {
                     In my free time I use moutain biking and hiking as ways to clear the mind to solve complex problems, while keeping updated on the latest trends and technologies through continuous learning.
                     </DescriptionParagraph>
                     <DescriptionParagraph>
-                    Fell free to connect with me on <a href="https://www.linkedin.com/in/rafaelsigwalt/" target="_blank" rel="noreferrer">LinkedIn</a> or explore my <a href="#" target="_blank">GitHub</a> respositories
+                    Fell free to connect with me on 
+                        <a href="https://www.linkedin.com/in/rafaelsigwalt/" target="_blank" rel="noreferrer">LinkedIn</a> or explore my 
+                        <a href="https://github.com/rafsig/" target="_blank" rel="noreferrer">GitHub</a> respositories
                     </DescriptionParagraph>
                 </DescriptionContainer>
             </AboutMeContainer>
