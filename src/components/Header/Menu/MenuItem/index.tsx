@@ -13,6 +13,7 @@ const ListItemStyled = styled.li`
         border-left:0;
         border-color: #f0f0f0;
         border-style: solid;
+        font-size:1.5em;
     }
 `;
 const LinkStyled = styled.a`

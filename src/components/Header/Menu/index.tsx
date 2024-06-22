@@ -9,8 +9,11 @@ const BarsIcon = styled.span`
     color:#f0f0f0;
     visibility: hidden;
     position: absolute;
-    bottom: 10px;
-    left:10px;
+    padding-bottom: 15px;
+    padding-left:20px;
+    padding-right: 20px;
+    cursor: pointer;
+    font-size: 1.5em;
     @media (max-width:600px) {
         visibility: visible;
     }
