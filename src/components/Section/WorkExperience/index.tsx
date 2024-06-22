@@ -22,6 +22,9 @@ const WorkExperienceDescription = styled.p`
     padding:10px 0;
     line-height: 1.5em;
     text-align: justify;
+    @media (max-width:600px) {
+        text-align: left;
+    }
 `;
 
 const WorkExperience = () => {

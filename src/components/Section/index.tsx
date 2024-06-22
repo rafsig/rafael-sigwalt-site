@@ -9,6 +9,10 @@ const SectionStyled = styled.section`
     margin: 40px 0;
     padding: 10px;
     border-radius: 20px;
+    @media (max-width:1040px) {
+        width:90%;
+        margin:40px auto;
+    }
 `
 
 const SectionTitle = styled.h2`
@@ -19,6 +23,9 @@ const SectionTitle = styled.h2`
     &::before, &:after {
         content:"\\00a0\\00a0\\00a0\\00a0\\00a0\\00a0\\00a0";
         text-decoration:line-through;
+    }
+    @media (max-width:600px) {
+        font-size: 1.8em;
     }
 `;
 

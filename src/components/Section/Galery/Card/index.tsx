@@ -10,6 +10,7 @@ const CardDivStyled = styled.div`
     overflow: hidden;
     &:hover{
         background-color: rgb(240, 240, 240);
+        cursor: pointer;
         img{
             opacity: 100%;
         }
@@ -62,16 +63,15 @@ const Technology = styled.p`
 const Card = (props:GaleryCardProps) => {
 
     return (
-        <CardDivStyled>
-            <CardImageStyled src={props.imageUrl}></CardImageStyled>
+        <CardDivStyled onClick={() =>  {/*props.onSelectProject(props.project);*/}}>
+            <CardImageStyled src={props.project.imageUrl}></CardImageStyled>
             <CardContentCotainer>
-                <CardTitle>{props.title}</CardTitle>
-                <Description>{props.description}</Description>
+                <CardTitle>{props.project.title}</CardTitle>
+                <Description>{props.project.description}</Description>
                 <Technologies>
-                    {props.technologies.map((tech)=> <Technology>{tech}</Technology>)} 
+                    {props.project.technologies.map((tech)=> <Technology>{tech}</Technology>)} 
                 </Technologies>
-                {props.url ? (<a>{props.url}</a>) :<></> }
-                <a href={props.git}>GitHub</a>
+                <a href={props.project.git}>GitHub</a>
             </CardContentCotainer>
         </CardDivStyled>  
     );

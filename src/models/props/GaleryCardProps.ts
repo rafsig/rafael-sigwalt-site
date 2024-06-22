@@ -1,8 +1,6 @@
+import Project from "../Project";
+
 export interface GaleryCardProps{
-    title:string;
-    description:string;
-    technologies:string[];
-    url?:string;
-    git:string;
-    imageUrl:string;
+    project:Project;
+    onSelectProject:React.Dispatch<React.SetStateAction<Project | undefined>>;
 }

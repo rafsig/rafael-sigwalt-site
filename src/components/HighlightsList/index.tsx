@@ -25,6 +25,9 @@ const HighlightText = styled.p`
       display: inline;
       margin: 0;
       text-align: justify;
+      @media (max-width: 600px) {
+        text-align: left;
+      }
 `;
 
 const HighlightsList = (props:HighlightListProps) => {

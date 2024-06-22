@@ -7,6 +7,9 @@ const AboutMeContainer = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     gap:20px;
+    @media (max-width:1040px) {
+        justify-content: center;
+    }
 `
 
 const ProfileImage = styled.img`
@@ -24,6 +27,9 @@ const DescriptionParagraph = styled.p`
     line-height: 1.5em;
     margin: 0 0 20px 0;
     padding: 0;
+    @media (max-width:600px) {
+        text-align: left;
+    }
 `
 
 
@@ -41,8 +47,8 @@ const AboutMe = () => {
                     </DescriptionParagraph>
                     <DescriptionParagraph>
                     Fell free to connect with me on 
-                        <a href="https://www.linkedin.com/in/rafaelsigwalt/" target="_blank" rel="noreferrer">LinkedIn</a> or explore my 
-                        <a href="https://github.com/rafsig/" target="_blank" rel="noreferrer">GitHub</a> respositories
+                        <a href="https://www.linkedin.com/in/rafaelsigwalt/" target="_blank" rel="noreferrer"> LinkedIn</a> or explore my  
+                        <a href="https://github.com/rafsig/" target="_blank" rel="noreferrer"> GitHub</a> respositories
                     </DescriptionParagraph>
                 </DescriptionContainer>
             </AboutMeContainer>

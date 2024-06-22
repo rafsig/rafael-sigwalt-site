@@ -18,6 +18,9 @@ const ScrollIndicatorContainer = styled.div<ScrollIndicatorContainerProps>`
     visibility: ${props => props.$visibility};
     opacity: ${props => props.$visibility == "visible"? "100%" : 0};
     transition: visibility 0.5s, opacity 0.5s ease-out;
+    @media (max-width:1040px) {
+        visibility: hidden;
+    }
 `
 
 const ScrollText = styled.h1`

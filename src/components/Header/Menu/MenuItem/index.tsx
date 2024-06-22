@@ -4,12 +4,25 @@ import MenuItemProps from "../../../../models/props/MenuItemProps";
 
 const ListItemStyled = styled.li`
     margin:10px 0;
+    @media (max-width:600px) {
+        margin: 0;
+        padding: 10px 0;
+        border-top:0;
+        border-bottom: 1px;
+        border-right:0;
+        border-left:0;
+        border-color: #f0f0f0;
+        border-style: solid;
+    }
 `;
 const LinkStyled = styled.a`
     color:#F0F0F0;
     font-family: monospace;
     font-size:1.2em;
     text-decoration: none;
+    @media (max-width: 600px) {
+        display: block;
+    }
 `
 
 const MenuItem = (props:MenuItemProps) => {

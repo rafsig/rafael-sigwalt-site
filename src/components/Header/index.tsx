@@ -37,6 +37,10 @@ const FigureStyled = styled.figure<FigureProps>`
     margin: ${ props => `${props.$marginTop}px`} auto 0 auto;
     display: flex;
     justify-content: center;
+    @media (max-width: 1040px) {
+        visibility:hidden;
+        height:0px;
+    }
 `
 
 const ImageStyled = styled.img`
@@ -55,6 +59,10 @@ const TitleStyled = styled.h1<TitlePosition>`
     bottom:30px;
     margin:20px;
     left:${props => `${props.$nameLeft}px`};
+    @media (max-width:1040px) {
+        position:static;
+        text-align:center;
+    }
 `
 
 const Header = ({setTopMain}:{setTopMain:React.Dispatch<React.SetStateAction<number>>}) => {
@@ -77,9 +85,10 @@ const Header = ({setTopMain}:{setTopMain:React.Dispatch<React.SetStateAction<num
     <HeaderStyled>
             <FigureStyled $pictureHeight = {contentStyling.pictureHeight} $marginTop={contentStyling.marginTop}>
                 <ImageStyled ref={imageReference} src="/images/panorama.jpg"></ImageStyled>
-                <TitleStyled $nameLeft={contentStyling.nameLeft} >Rafael Sigwalt</TitleStyled>
+                
                 <ScrollIndicator/>
             </FigureStyled>
+            <TitleStyled $nameLeft={contentStyling.nameLeft} >Rafael Sigwalt</TitleStyled>
             <Menu></Menu>
     </HeaderStyled>);
 

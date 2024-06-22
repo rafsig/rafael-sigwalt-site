@@ -6,6 +6,8 @@ import Galery from "./components/Section/Galery";
 import WorkExperience from "./components/Section/WorkExperience";
 import AboutMe from "./components/Section/AboutMe";
 import Skills from "./components/Section/Skills";
+import Modal from "./components/Modal";
+import Project from "./models/Project";
 
 
 interface MainProp {
@@ -26,16 +28,20 @@ const MainStyled = styled.main<MainProp>`
 
   top:${props => props.$top?`${props.$top}px`:"100vh"};
   left:0;
+  @media (max-width:1040px) {
+    top:135px;
+  }
 `;
 
 const EndBar = styled.div`
   background-color: #05012c;
   height:25px;
-`
+`  
 
 function App() {
 
   const [topMain, setTopMain] = useState(0);
+  const [project, setProject] = useState<Project>();
 
   return (
     <>
@@ -47,9 +53,10 @@ function App() {
           <AboutMe/>
           <Skills/>
           <WorkExperience/>
-          <Galery></Galery>
+          <Galery onSelectProject={setProject}></Galery>
         </ContentContainer>
         <EndBar/>
+        <Modal project={project} setProject={setProject}/>
       </MainStyled>
     </>
   )
