@@ -29,7 +29,7 @@ const WorkExperienceDescription = styled.p`
 
 const WorkExperience = () => {
     return (
-    <Section id="WorkExperience" title="WorkExperience" mode="white">
+    <Section id="WorkExperience" title="Work Experience" mode="white">
         { workExperience.map( experience => (
            
                 <SectionContentContainer>
