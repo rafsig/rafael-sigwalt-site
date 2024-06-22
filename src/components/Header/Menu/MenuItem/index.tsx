@@ -42,8 +42,14 @@ const MenuItem = (props:MenuItemProps) => {
         const targetElement = document.getElementById(elementId);
 
         try{
-            const top =  targetElement!.offsetTop +  window.innerHeight;
+            var top = 0;
+            if(window.innerWidth > 1040){
+                top =  targetElement!.offsetTop +  window.innerHeight;
+            } else {
+                top = targetElement!.offsetTop - 50;
+            }
 
+            props.onSelectSection("collapse");
             window.scrollTo({top, behavior: 'smooth'})
         } catch(e) {
             console.log(`not able to find ${elementId}`);
