@@ -66,10 +66,10 @@ const Menu = () => {
         <Overlay $visibility={menuVisibility} onClick={toggleMenuVisibility}/>
         <BarsIcon onClick={toggleMenuVisibility}><FontAwesomeIcon icon={faBars}/></BarsIcon>
         <ListStyled $visibility={menuVisibility}>
-            <MenuItem text="About Me" target="AboutMe" onSelectSection={toggleMenuVisibility}/>
-            <MenuItem text="Skills" target="Skills" onSelectSection={toggleMenuVisibility}/>
-            <MenuItem text="Work Experience" target="WorkExperience" onSelectSection={toggleMenuVisibility}/>
-            <MenuItem text="Projects" target="Projects" onSelectSection={toggleMenuVisibility}/>
+            <MenuItem text="About Me" target="AboutMe" onSelectSection={setMenuVisibility}/>
+            <MenuItem text="Skills" target="Skills" onSelectSection={setMenuVisibility}/>
+            <MenuItem text="Work Experience" target="WorkExperience" onSelectSection={setMenuVisibility}/>
+            <MenuItem text="Projects" target="Projects" onSelectSection={setMenuVisibility}/>
         </ListStyled>
     </NavStyled>);
 
