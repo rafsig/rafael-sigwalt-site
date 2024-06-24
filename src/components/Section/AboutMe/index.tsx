@@ -2,6 +2,8 @@ import styled from "styled-components";
 import SectionContentContainer from "../SectionContentContainer";
 import Section from "..";
 
+import aboutMe from "./aboutMe.json";
+
 const AboutMeContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -40,15 +42,15 @@ const AboutMe = () => {
                 <ProfileImage src="/images/profile-picture.jpg"></ProfileImage>
                 <DescriptionContainer>
                     <DescriptionParagraph>
-                    A software developer, with Bachelor in Mechanical Engineering and a Software Development and Network Engineering colege diploma. With five years of professional experience, I have successfully delivered complex web applications using Java Spring Boot, Angular and SQL. My expertise includes full-stack development, REST APIs and cloud technologies.
+                        {aboutMe.professionalDescription}
                     </DescriptionParagraph>
                     <DescriptionParagraph>
-                    In my free time I use moutain biking and hiking as ways to clear the mind to solve complex problems, while keeping updated on the latest trends and technologies through continuous learning.
+                        {aboutMe.personalDescription}
                     </DescriptionParagraph>
                     <DescriptionParagraph>
                     Fell free to connect with me on 
-                        <a href="https://www.linkedin.com/in/rafaelsigwalt/" target="_blank" rel="noreferrer"> LinkedIn</a> or explore my  
-                        <a href="https://github.com/rafsig/" target="_blank" rel="noreferrer"> GitHub</a> respositories
+                        <a href={aboutMe.links.linkedIn} target="_blank" rel="noreferrer"> LinkedIn</a> or explore my  
+                        <a href={aboutMe.links.github} target="_blank" rel="noreferrer"> GitHub</a> respositories
                     </DescriptionParagraph>
                 </DescriptionContainer>
             </AboutMeContainer>
