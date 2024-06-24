@@ -1,9 +1,15 @@
 [
     {
         "title":"Personal Website - front-end",
-        "description":"The website you are currently visiting that showcases my knowledge and experiences",
+        "shortDescription":"The website you are currently visiting that showcases my knowledge and experiences",
+        "description":"This website, based on React and Typescript, deployed using AWS amplify. It is meant to showcase my capabilities as a software developer. New features and capabilities will be added based on feedback and new knowledge, following an agile filosophy of constant development.",
         "imageUrl":"/images/website-cover.png",
         "git":"https://github.com/rafsig/rafael-sigwalt-site",
-        "technologies":["React", "TypeScript", "HTML", "CSS", "Styled Components"]
+        "skills":["React", "TypeScript", "HTML", "CSS", "Styled-Components"],
+        "nextSteps":[
+            "Add Redux to manage global state", 
+            "Create backend services to support the front end",
+            "Add Education section",
+            "Add Certifications section"]
     }
 ]
