@@ -9,7 +9,10 @@ interface ScrollIndicatorContainerProps {
 
 const ScrollIndicatorContainer = styled.div<ScrollIndicatorContainerProps>`
     width:fit-content;
-    color:#e0e0e0;
+    color:#f0f0f0;
+    background-color: rgba(0,0,0,0.3);
+    padding:15px;
+    border-radius: 20px;
     font-size:1.2em;
     position: absolute;
     bottom: 2em;
