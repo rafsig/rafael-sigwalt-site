@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { GaleryCardProps } from "../../../../models/props/GaleryCardProps";
+import { SkillList, Skill } from "../../../Skills";
 
 const CardDivStyled = styled.div`
     width:320px;
@@ -42,36 +43,22 @@ const Description = styled.p`
     height: 55px;
 `
 
-const Technologies = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    row-gap:5px;
-    column-gap: 20px;
-    font-size: 1.2em;
-    font-weight: bold;
-    font-family: monospace;
-    height: 40px;
-`
-
-const Technology = styled.p`
-    margin: 0;
-    padding: 0;
-`
-
 
 const Card = (props:GaleryCardProps) => {
 
     return (
-        <CardDivStyled onClick={() =>  {/*props.onSelectProject(props.project);*/}}>
+        <CardDivStyled onClick={() =>  {props.onSelectProject(props.project);}}>
             <CardImageStyled src={props.project.imageUrl}></CardImageStyled>
             <CardContentCotainer>
                 <CardTitle>{props.project.title}</CardTitle>
-                <Description>{props.project.description}</Description>
-                <Technologies>
-                    {props.project.technologies.map((tech)=> <Technology>{tech}</Technology>)} 
-                </Technologies>
-                <a href={props.project.git}>GitHub</a>
+                <Description>{props.project.shortDescription}</Description>
+                <SkillList>
+                    {props.project.skills.map((tech)=> <Skill>{tech}</Skill>)} 
+                </SkillList>
+                {
+                    props.project.git ? <a href={props.project.git}>GitHub</a> : <></>
+                }
+                
             </CardContentCotainer>
         </CardDivStyled>  
     );

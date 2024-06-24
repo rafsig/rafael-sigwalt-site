@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Project from "../../models/Project";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
+import { SkillList, Skill } from "../Skills";
 
 
 const Overlay = styled.div`
@@ -15,16 +16,19 @@ const Overlay = styled.div`
 `
 
 const DialogStyled = styled.dialog`
-    position:absolute;
+    position:fixed;
     margin:0 auto;
     padding:0;
-    top:10%;
-    height:80%;
+    top:5%;
+    height:90%;
     width:90%;
-    max-width: 1440px;
+    max-width: 1040px;
     border-radius: 20px;
     border: none;
     background-color: #f0f0f0;
+    overflow: scroll;
+    scrollbar-width:none;
+    z-index: 1001;
 `
 
 const FormStyled = styled.form`
@@ -46,6 +50,15 @@ const ModalTitle = styled.h2`
 const ProjectImage = styled.img`
     display: block;
     margin: 0 auto;
+    width:80%;
+    max-height: 30%;
+    object-fit: cover;
+    object-position: top;
+`
+
+const InfoContainer = styled.div`
+    padding: 20px;
+    line-height: 1.5em;
 `
 
 const Modal = ({project, setProject}:{project?:Project, setProject:React.Dispatch<React.SetStateAction<Project | undefined>>}) => {
@@ -53,16 +66,41 @@ const Modal = ({project, setProject}:{project?:Project, setProject:React.Dispatc
     <>
         {project?
         (
-        <Overlay>
+        <>
+            <Overlay onClick={() => setProject(undefined)}/>
             <DialogStyled open={project ? true : false}>
                     <ModalTitle>{project.title}</ModalTitle>
                     <ProjectImage src={project.imageUrl}></ProjectImage>
-                    <div>bla</div>
+                    <InfoContainer>
+                        <h4>Description</h4>
+                        <p>{project.description}</p>
+                        
+                        {
+                        project.nextSteps?
+                            <>
+                            <h4>Next Steps</h4> 
+                            <ol>
+                                {project.nextSteps.map(nextStep => <li>{nextStep}</li>)}
+                            </ol></>: <></>
+                        }
+                        <h4>Skills</h4>
+                        <SkillList>
+                            {project.skills.map(skill => <Skill>{skill}</Skill>)}
+                        </SkillList>
+                        {
+                            project.git ?
+                            <>
+                                <h4>Links</h4>
+                                <a href={project.git}>GitHub</a>
+                            </>
+                            : <></>
+                        }
+                    </InfoContainer>
                     <FormStyled method="dialog">
                         <CloseButton onClick={() => {setProject(undefined)}}><FontAwesomeIcon icon={faX}/></CloseButton>
                     </FormStyled>
             </DialogStyled>
-        </Overlay>
+        </>
         ) : <></>}
     </>
 
