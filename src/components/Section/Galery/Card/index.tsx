@@ -47,7 +47,7 @@ const Description = styled.p`
 const Card = (props:GaleryCardProps) => {
 
     return (
-        <CardDivStyled onClick={() =>  {props.onSelectProject(props.project);}}>
+        <CardDivStyled onClick={event =>  {event.stopPropagation(); props.onSelectProject(props.project);}}>
             <CardImageStyled src={props.project.imageUrl}></CardImageStyled>
             <CardContentCotainer>
                 <CardTitle>{props.project.title}</CardTitle>
@@ -56,7 +56,12 @@ const Card = (props:GaleryCardProps) => {
                     {props.project.skills.map((tech)=> <Skill>{tech}</Skill>)} 
                 </SkillList>
                 {
-                    props.project.git ? <a href={props.project.git}>GitHub</a> : <></>
+                    props.project.git ? 
+                        <a 
+                            href={props.project.git} 
+                            target="_blank" 
+                            rel="noreferrer" 
+                            onClick={event => event.stopPropagation()}>GitHub</a> : <></>
                 }
                 
             </CardContentCotainer>
