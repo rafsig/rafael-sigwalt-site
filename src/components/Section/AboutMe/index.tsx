@@ -2,6 +2,10 @@ import styled from "styled-components";
 import Section from "..";
 
 import aboutMe from "./aboutMe.json";
+import { useEffect, useState } from "react";
+import About from "../../../models/About";
+import AboutService, { getAbout } from "../../../services/AboutService";
+import axios from "axios";
 
 const AboutMeContainer = styled.div`
     display:flex;
@@ -20,6 +24,19 @@ const DescriptionParagraph = styled.p`
 
 
 const AboutMe = () => {
+
+    const [about, setAbout] = useState<About | undefined>();
+    
+    useEffect(() => {
+        axios
+            .get<About>("https://api.rafael-sigwalt.com/v1/about")
+            .then(result => {
+                setAbout(result.data);
+                console.log(result.data);
+            })
+            .catch(err => console.log(err));
+    } , [] );
+
     return(
     <Section id="AboutMe" title="About Me" titlePosition="left" imagePath="/images/profile-picture.jpg">
         <AboutMeContainer>
