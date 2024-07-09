@@ -30,6 +30,9 @@ const TitleStyled = styled.h1`
     color:#060D4A;
     margin-left: 50px;
     margin:20px 50px;
+    @media (max-width:1400px) {
+        font-size:2.5em
+    }
 `
 
 const Header = () => {
