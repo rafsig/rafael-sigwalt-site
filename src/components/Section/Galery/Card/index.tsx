@@ -10,8 +10,15 @@ const CardDivStyled = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     overflow: hidden;
     &:hover{
-        background-color: rgb(240, 240, 240);
+        background-color: rgb(255, 255, 255);
         cursor: pointer;
+        img{
+            opacity: 100%;
+        }
+    }
+    @media (max-width:800px) {
+        background-color: rgb(255, 255, 255);
+        height:500px;
         img{
             opacity: 100%;
         }
@@ -26,6 +33,7 @@ const CardImageStyled = styled.img`
 `
 const CardContentCotainer = styled.div`
     padding:10px 10px;
+    height: 77%;
     display: flex;
     flex-direction: column;
     gap:30px;
@@ -40,7 +48,10 @@ const CardTitle = styled.h3`
 
 const Description = styled.p`
     margin: 0;
-    height: 55px;
+    height: 65px;
+    @media (max-width: 800px) {
+        height: fit-content;
+    }
 `
 
 
