@@ -4,15 +4,15 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
 
 html {
-    line-height: 1.15; /* 1 */
+    line-height: 1.2; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
     font-family: Roboto, sans-serif;
     color:#202020
   }
   
   body {
+    background-color:#f5f5f5;
     margin: 0;
-    background-color: #05012c;
   }
   
   

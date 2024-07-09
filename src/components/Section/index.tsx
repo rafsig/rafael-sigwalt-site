@@ -1,46 +1,116 @@
 import styled from "styled-components";
 import SectionProps from "../../models/props/SectionProps";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { sectionTitleColor, specialFontColor } from "../GlobalStyle/styleVariables";
 
-interface SectionContentProp {
-    $mode:"transparent" | "white";
+interface SectionProp {
+   $titlePosition:"left"|"right"|"top";
 }
 
-const SectionStyled = styled.section`
-    margin: 40px 0;
-    padding: 10px;
+const SectionStyled = styled.section<SectionProp>`
     border-radius: 20px;
-    @media (max-width:1040px) {
-        width:90%;
-        margin:40px auto;
+    display: flex;
+    flex-direction: ${props => getFlexDirectionFromTitlePosition(props)};
+    @media (max-width:1000px) or (max-height:890px){
+        flex-direction: column;
     }
 `
 
-const SectionTitle = styled.h2`
-    font-size:2em;
-    text-align:center;
-    margin:20px 0 20px 0;
-    color: #e5e5e5;
-    &::before, &:after {
-        content:"\\00a0\\00a0\\00a0\\00a0\\00a0\\00a0\\00a0";
-        text-decoration:line-through;
+function getFlexDirectionFromTitlePosition(props:SectionProp) {
+    switch(props.$titlePosition) {
+        case "left":
+            return "row";
+        case "right":
+            return "row-reverse";
+        case "top":
+            return "column";
     }
-    @media (max-width:600px) {
-        font-size: 1.8em;
+}
+
+const TitleDiv = styled.div<SectionProp>`
+    display: flex;
+    flex-direction: ${props => props.$titlePosition === 'top'? 'row-reverse' : 'column'};
+    row-gap: 30px;
+    column-gap: 30px;
+    justify-content: center;
+    width: ${props => props.$titlePosition === 'top'? '100%' : '500px'};
+    min-width: 500px;
+    height: ${props => props.$titlePosition === 'top'? '160px' : 'calc(100vh - 135px)'};
+    background-color: ${sectionTitleColor};
+    @media (max-width:1000px) or (max-height:890px){
+        width:100%;
+        height:160px;
+        flex-direction: row-reverse;
+    }
+    @media (max-width:1400px){
+        min-width: 280px;
+    }
+    
+`;
+
+const SectionTitle = styled.h2<SectionProp>`
+    font-size:2.5em;
+    font-family: Philosopher;
+    text-align:center;
+    height: fit-content;
+    margin: ${props => props.$titlePosition === 'top'? 'auto 0' : '0'};
+    color: ${specialFontColor};
+    @media(max-width: 1000px) or (max-height:890px) {
+        margin: auto 0;
     }
 `;
 
-const SectionContent = styled.div<SectionContentProp>`
-    padding:40px 0px 40px 0px;
-    background-color: ${props => props.$mode == "transparent"? props.$mode : "#e5e5e5"};
-    border-radius: 20px;
-    box-shadow: ${props => props.$mode == "white" ? "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" : "0"};
+const SectionImage = styled.img<SectionProp>`
+    height:200px;
+    width:200px;
+    border-radius: 100px;
+    margin:${props => props.$titlePosition === 'top'? 'auto 0' : '0 auto'};
+    @media (max-width:1000px)  or (max-height:890px){
+        height:110px;
+        width:110px;
+        margin: auto 0;
+    }
 `
 
+const SectionContent = styled.div<SectionProp>`
+    height :${props => props.$titlePosition === 'top'? 'calc(100vh - 295px)' : 'calc(100vh - 135px)'} ;
+    width: ${props => props.$titlePosition === 'top'? '100%' : 'calc(1400px - 500px)'};
+    
+    @media(max-width: 1400px) or (max-height:890px)  {
+        width: calc(100% - 60px);
+        height:fit-content;
+        margin: auto 30px;
+    }
+    @media(max-width: 1000px) or (max-height:890px)  {
+        height:fit-content;
+        margin: 30px 30px;
+    }
+ `
+
+const IconContainer = styled.div<SectionProp>`
+    height: fit-content;
+    width: fit-content;
+    margin: ${props => props.$titlePosition === 'top'? 'auto 0' : '0 auto'};
+    @media(max-width:1000px) or (max-height:890px) {
+        margin: auto 0;
+    }
+`
 
 const Section = (props:SectionProps) => {
-    return (<SectionStyled>
-            <SectionTitle id={props.id}>&nbsp;{props.title}&nbsp;</SectionTitle>
-            <SectionContent $mode={props.mode}>{props.children}</SectionContent>
+    return (
+        <SectionStyled id={props.id} $titlePosition={props.titlePosition}>
+            <TitleDiv $titlePosition={props.titlePosition}>
+                <SectionTitle $titlePosition={props.titlePosition}>&nbsp;{props.title}&nbsp;</SectionTitle>
+                {props.imagePath &&
+                    <SectionImage $titlePosition={props.titlePosition} src={props.imagePath}/>
+                }
+                { props.icon && 
+                <IconContainer $titlePosition={props.titlePosition}>
+                    <FontAwesomeIcon icon={props.icon} size="3x" color={specialFontColor}/>
+                </IconContainer>}
+                
+            </TitleDiv>
+            <SectionContent $titlePosition={props.titlePosition}>{props.children}</SectionContent>
             
         </SectionStyled>);
 }

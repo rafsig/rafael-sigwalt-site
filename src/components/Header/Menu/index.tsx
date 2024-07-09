@@ -14,9 +14,6 @@ const BarsIcon = styled.span`
     padding-right: 20px;
     cursor: pointer;
     font-size: 1.5em;
-    @media (max-width:600px) {
-        visibility: visible;
-    }
 `
 
 const NavStyled = styled.nav`
@@ -27,24 +24,12 @@ const ListStyled = styled.ul<MenuProps>`
     list-style: none;
     padding: 0;
     margin: 0;
-
     display: flex;
     width: 100%;
     justify-content: center;
     gap: 20px;
     flex-flow: row;
     flex-grow: 0;
-    @media (max-width:600px) {
-        visibility: ${props => props.$visibility};
-        opacity: ${props => props.$visibility === "collapse" ? "0%": "100%" };
-        transition: opacity 0.5s, visibility 0.5s;
-        flex-direction: column;
-        position:absolute;
-        top:135px;
-        background-color: #020250;
-        padding: 0 20px 20px 20px;
-        gap:0;
-    }
 `;
 
 const Overlay = styled.div<MenuProps>`
