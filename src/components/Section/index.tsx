@@ -58,6 +58,9 @@ const SectionTitle = styled.h2<SectionProp>`
     @media(max-width: 1000px) or (max-height:890px) {
         margin: auto 0;
     }
+    @media (max-width:800px) {
+        font-size:2em;
+    }
 `;
 
 const SectionImage = styled.img<SectionProp>`

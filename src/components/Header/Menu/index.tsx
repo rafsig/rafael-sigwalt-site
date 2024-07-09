@@ -4,9 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { MenuProps } from "../../../models/props/MenuProps";
+import { sectionTitleColor, specialFontColor } from "../../GlobalStyle/styleVariables";
 
 const BarsIcon = styled.span`
-    color:#f0f0f0;
+    color: ${specialFontColor};
     visibility: hidden;
     position: absolute;
     padding-bottom: 15px;
@@ -14,6 +15,9 @@ const BarsIcon = styled.span`
     padding-right: 20px;
     cursor: pointer;
     font-size: 1.5em;
+    @media (max-width: 800px) {
+        visibility: visible;
+    }
 `
 
 const NavStyled = styled.nav`
@@ -30,6 +34,19 @@ const ListStyled = styled.ul<MenuProps>`
     gap: 20px;
     flex-flow: row;
     flex-grow: 0;
+    @media (max-width:800px) {
+        visibility: ${props => props.$visibility};
+        position: absolute;
+        top:135px;
+        left:0;
+        flex-direction: column;
+        background-color: ${sectionTitleColor};
+        gap:0;
+        li {
+            margin:0;
+            border-bottom: 1px solid ${specialFontColor};
+        }
+    }
 `;
 
 const Overlay = styled.div<MenuProps>`
