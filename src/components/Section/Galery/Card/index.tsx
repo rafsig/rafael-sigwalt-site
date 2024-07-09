@@ -30,6 +30,8 @@ const CardImageStyled = styled.img`
     height:33%;
     border-radius:20px, 20px, 0, 0;
     opacity:80%;
+    object-fit: cover;
+    object-position: top;
 `
 const CardContentCotainer = styled.div`
     padding:10px 10px;
