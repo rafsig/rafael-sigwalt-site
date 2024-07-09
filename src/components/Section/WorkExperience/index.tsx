@@ -1,47 +1,75 @@
-import styled from "styled-components";
-import HighlightsList from "../../HighlightsList";
-import SectionContentContainer from "../SectionContentContainer";
-
 import workExperience from "../WorkExperience/work-experience.json";
 import Section from "..";
+import { faChevronLeft, faChevronRight, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
+import WorkExperienceCard from "./WorkExperienceCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styled from "styled-components";
+import { useEffect, useState } from "react";
+import WorkExperience from "../../../models/WorkExperience";
+import { disabledColor, specialFontColor } from "../../GlobalStyle/styleVariables";
 
-const WorkExperienceTitle = styled.h4`
-    margin: 0;
-    padding: 0;
-    font-size: 1.5em;
-    
-`;
-const WorkExperienceDates = styled.h5`
-    margin: 0;
-    padding: 0;
-    font-size: 1.1em;
-    color: #616161;
-`;
 
-const WorkExperienceDescription = styled.p`
-    padding:10px 0;
-    line-height: 1.5em;
-    text-align: justify;
-    @media (max-width:600px) {
-        text-align: left;
+interface ItemProp {
+    $selected?:boolean;
+}
+
+const CarrouselContainer = styled.div`
+    width:100%;
+    display: flex;
+    flex-direction:row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    button {
+        border:none;
+        cursor: pointer;
+        background-color: transparent;
+        font-size: 1.2em;
+        padding:10px;
+        color:${specialFontColor};
     }
-`;
+`
 
-const WorkExperience = () => {
+const Item = styled.div<ItemProp>`
+    height: ${props => props.$selected ? '10px' : '8px'};
+    width: ${props => props.$selected ? '10px' : '8px'};;
+    background-color: ${props => props.$selected ? specialFontColor : disabledColor};
+    margin:10px;
+    border-radius: ${props => props.$selected ? '5px' : '4px'};;
+`
+
+const WorkExperienceSection = () => {
+
+    const [experienceIndex, setExperienceIndex] = useState(0);
+
+    const [experience, setExperience] = useState<WorkExperience>(workExperience[0]);
+
+    useEffect(()=>{
+        setExperience(workExperience[experienceIndex])
+    }, [experienceIndex]);
+
+    function goToNextExperience() {
+        if(experienceIndex < workExperience.length - 1) {
+            setExperienceIndex(experienceIndex + 1);
+        }
+    }
+
+    function goToPreviousExperience() {
+        if(experienceIndex > 0) {
+            setExperienceIndex(experienceIndex - 1);
+        }
+    }
+
     return (
-    <Section id="WorkExperience" title="Work Experience" mode="white">
-        { workExperience.map( experience => (
-           
-                <SectionContentContainer>
-                    <WorkExperienceTitle>{`${experience.role} at ${experience.companyName}`}</WorkExperienceTitle>
-                    <WorkExperienceDates>{`from ${experience.dateStart} to ${experience.dateEnd}`}</WorkExperienceDates>
-                    <WorkExperienceDescription>{experience.description}</WorkExperienceDescription>
-                    <HighlightsList highlights = {experience.highlights}/>
-                </SectionContentContainer>
-            
-        )) }
-    </Section>
+        <Section id="WorkExperience" title="Work Experience" titlePosition="top" icon={faLaptopCode}>
+            <WorkExperienceCard {...experience} />
+            <CarrouselContainer>
+                <button disabled={experienceIndex === 0 ? true : false} onClick={goToPreviousExperience}><FontAwesomeIcon icon={faChevronLeft}/> Previous</button>
+                {workExperience.map((_currentExperience, index) =><Item $selected={ index === experienceIndex ? true : false}></Item>)}
+                <button disabled={experienceIndex === workExperience.length - 1 ? true : false} onClick={goToNextExperience}>Next <FontAwesomeIcon icon={faChevronRight}/></button>
+            </CarrouselContainer>
+        </Section>
     );
 }
 
-export default WorkExperience;
+export default WorkExperienceSection;

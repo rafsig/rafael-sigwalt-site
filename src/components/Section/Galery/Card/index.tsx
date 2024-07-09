@@ -3,8 +3,8 @@ import { GaleryCardProps } from "../../../../models/props/GaleryCardProps";
 import { SkillList, Skill } from "../../../Skills";
 
 const CardDivStyled = styled.div`
-    width:320px;
-    height:400px;
+    width:300px;
+    height:420px;
     background-color: rgba(240, 240, 240, 0.80);
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

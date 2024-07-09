@@ -4,26 +4,12 @@ import MenuItemProps from "../../../../models/props/MenuItemProps";
 
 const ListItemStyled = styled.li`
     margin:10px 0;
-    @media (max-width:600px) {
-        margin: 0;
-        padding: 10px 0;
-        border-top:0;
-        border-bottom: 1px;
-        border-right:0;
-        border-left:0;
-        border-color: #f0f0f0;
-        border-style: solid;
-        font-size:1.5em;
-    }
 `;
 const LinkStyled = styled.a`
-    color:#F0F0F0;
+    color:#060D4A;
     font-family: monospace;
     font-size:1.2em;
-    text-decoration: none;
-    @media (max-width: 600px) {
-        display: block;
-    }
+    text-decoration: none; 
 `
 
 const MenuItem = (props:MenuItemProps) => {
@@ -44,11 +30,8 @@ const MenuItem = (props:MenuItemProps) => {
 
         try{
             var top = 0;
-            if(window.innerWidth > 1040){
-                top =  targetElement!.offsetTop +  window.innerHeight;
-            } else {
-                top = targetElement!.offsetTop - 50;
-            }
+
+            top =  targetElement!.offsetTop ;
 
             props.onSelectSection("collapse");
             window.scrollTo({top, behavior: 'smooth'})
