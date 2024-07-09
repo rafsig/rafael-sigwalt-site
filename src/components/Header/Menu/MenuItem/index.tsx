@@ -1,12 +1,13 @@
 import { MouseEvent } from "react";
 import styled from "styled-components";
 import MenuItemProps from "../../../../models/props/MenuItemProps";
+import { specialFontColor } from "../../../GlobalStyle/styleVariables";
 
 const ListItemStyled = styled.li`
     margin:10px 0;
 `;
 const LinkStyled = styled.a`
-    color:#060D4A;
+    color: ${specialFontColor};
     font-family: monospace;
     font-size:1.2em;
     text-decoration: none;
