@@ -8,7 +8,8 @@ const WorkExperienceDiv = styled.div`
     margin: 20px 0;
     border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    height:calc(100vh - 160px - 60px - 135px - 80px);
+    min-height:calc(100vh - 160px - 60px - 135px - 80px);
+    height: fit-content;
     @media(max-width: 1400px) {
         height:fit-content;
     }
