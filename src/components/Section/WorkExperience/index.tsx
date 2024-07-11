@@ -1,4 +1,3 @@
-import workExperience from "../WorkExperience/work-experience.json";
 import Section from "..";
 import { faChevronLeft, faChevronRight, faLaptopCode } from "@fortawesome/free-solid-svg-icons";
 import WorkExperienceCard from "./WorkExperienceCard";
@@ -7,6 +6,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import WorkExperience from "../../../models/WorkExperience";
 import { disabledColor, specialFontColor } from "../../GlobalStyle/styleVariables";
+import axios from "axios";
 
 
 interface ItemProp {
@@ -40,16 +40,22 @@ const Item = styled.div<ItemProp>`
 
 const WorkExperienceSection = () => {
 
+    const API_ENDPOINT = import.meta.env.VITE_REACT_APP_CLIENT_ID;
+    
     const [experienceIndex, setExperienceIndex] = useState(0);
 
-    const [experience, setExperience] = useState<WorkExperience>(workExperience[0]);
+    const [experienceList, setExperienceList] = useState<WorkExperience[]>([]);
 
-    useEffect(()=>{
-        setExperience(workExperience[experienceIndex])
-    }, [experienceIndex]);
+    useEffect(() => {
+        axios.get<WorkExperience[]>(`${API_ENDPOINT}/workExperience`)
+            .then(response => setExperienceList(response.data))
+            .catch(err => console.log(err));
+
+            setExperienceIndex(0);
+    } ,[]);
 
     function goToNextExperience() {
-        if(experienceIndex < workExperience.length - 1) {
+        if(experienceIndex < experienceList.length - 1) {
             setExperienceIndex(experienceIndex + 1);
         }
     }
@@ -62,11 +68,20 @@ const WorkExperienceSection = () => {
 
     return (
         <Section id="WorkExperience" title="Work Experience" titlePosition="top" icon={faLaptopCode}>
-            <WorkExperienceCard {...experience} />
+            { experienceList[experienceIndex] &&
+            <WorkExperienceCard {...experienceList[experienceIndex]} />
+            }
             <CarrouselContainer>
-                <button disabled={experienceIndex === 0 ? true : false} onClick={goToPreviousExperience}><FontAwesomeIcon icon={faChevronLeft}/> Previous</button>
-                {workExperience.map((_currentExperience, index) =><Item $selected={ index === experienceIndex ? true : false}></Item>)}
-                <button disabled={experienceIndex === workExperience.length - 1 ? true : false} onClick={goToNextExperience}>Next <FontAwesomeIcon icon={faChevronRight}/></button>
+                <button 
+                    disabled={experienceIndex === 0 ? true : false} 
+                    onClick={goToPreviousExperience}>
+                        <FontAwesomeIcon icon={faChevronLeft}/> Previous</button>
+                {
+                    experienceList
+                        .map((_currentExperience, index) =>
+                            <Item key={index} $selected={ index === experienceIndex ? true : false}></Item>)
+                }
+                <button disabled={experienceIndex === experienceList.length - 1 ? true : false} onClick={goToNextExperience}>Next <FontAwesomeIcon icon={faChevronRight}/></button>
             </CarrouselContainer>
         </Section>
     );
