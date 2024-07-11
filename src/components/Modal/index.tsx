@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { SkillList, Skill } from "../Skills";
 import { sectionTitleColor, specialFontColor } from "../GlobalStyle/styleVariables";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 const Overlay = styled.div`
@@ -68,6 +70,17 @@ const InfoContainer = styled.div`
 `
 
 const Modal = ({project, setProject}:{project?:Project, setProject:React.Dispatch<React.SetStateAction<Project | undefined>>}) => {
+
+    const API_ENDPOINT = import.meta.env.VITE_REACT_APP_CLIENT_ID;
+
+    const [retrievedProject, setRetrievedProject] = useState<Project>();
+
+    useEffect(() => {
+        axios.get<Project>(`${API_ENDPOINT}/project/${project?.id}`)
+            .then(response => setRetrievedProject(response.data))
+            .catch(err => console.log(err));
+    } ,[project])
+
     return (
     <>
         {project?
@@ -79,7 +92,7 @@ const Modal = ({project, setProject}:{project?:Project, setProject:React.Dispatc
                 <ProjectImage src={project.imageUrl}></ProjectImage>
                 <InfoContainer>
                     <h4>Description</h4>
-                    <p>{project.description}</p>
+                    <p>{retrievedProject?.description}</p>
                     
                     {
                     project.nextSteps?
