@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Section from "..";
-
-import aboutMe from "./aboutMe.json";
+import { useEffect, useState } from "react";
+import About from "../../../models/About";
+import axios from "axios";
 
 const AboutMeContainer = styled.div`
     display:flex;
@@ -20,19 +21,33 @@ const DescriptionParagraph = styled.p`
 
 
 const AboutMe = () => {
+    const API_ENDPOINT = import.meta.env.VITE_REACT_APP_CLIENT_ID;
+
+    const [about, setAbout] = useState<About | undefined>();
+    
+    useEffect(() => {
+        axios
+            .get<About>(`${API_ENDPOINT}/about`)
+            .then(result => {
+                setAbout(result.data);
+                console.log(import.meta);
+            })
+            .catch(err => console.log(err));
+    } , [] );
+
     return(
     <Section id="AboutMe" title="About Me" titlePosition="left" imagePath="/images/profile-picture.jpg">
         <AboutMeContainer>
             <DescriptionParagraph>
-                {aboutMe.professionalDescription}
+                {about?.professionalDescription}
             </DescriptionParagraph>
             <DescriptionParagraph>
-                {aboutMe.personalDescription}
+                {about?.personalDescription}
             </DescriptionParagraph>
             <DescriptionParagraph>
             Fell free to connect with me on 
-                <a href={aboutMe.links.linkedIn} target="_blank" rel="noreferrer"> LinkedIn</a> or explore my  
-                <a href={aboutMe.links.github} target="_blank" rel="noreferrer"> GitHub</a> respositories
+                <a href={about?.links.linkedIn} target="_blank" rel="noreferrer"> LinkedIn</a> or explore my  
+                <a href={about?.links.github} target="_blank" rel="noreferrer"> GitHub</a> respositories
             </DescriptionParagraph>
         </AboutMeContainer>
     </Section>);

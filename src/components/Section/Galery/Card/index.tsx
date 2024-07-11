@@ -66,7 +66,7 @@ const Card = (props:GaleryCardProps) => {
                 <CardTitle>{props.project.title}</CardTitle>
                 <Description>{props.project.shortDescription}</Description>
                 <SkillList>
-                    {props.project.skills.map((tech)=> <Skill>{tech}</Skill>)} 
+                    {props.project.skills.map((tech, index)=> <Skill key={index} >{tech}</Skill>)} 
                 </SkillList>
                 {
                     props.project.git ? 

@@ -36,8 +36,8 @@ const HighlightsList = (props:HighlightListProps) => {
         {
             props.highlights
                 .map(
-                    highlight =>  (
-                    <HighlightItemStyled>
+                    (highlight, index )=>  (
+                    <HighlightItemStyled key={index}>
                         <IconContainerStyled>
                             <FontAwesomeIcon icon={faCheck}/>
                         </IconContainerStyled>
