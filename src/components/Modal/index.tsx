@@ -76,9 +76,11 @@ const Modal = ({project, setProject}:{project?:Project, setProject:React.Dispatc
     const [retrievedProject, setRetrievedProject] = useState<Project>();
 
     useEffect(() => {
-        axios.get<Project>(`${API_ENDPOINT}/project/${project?.id}`)
-            .then(response => setRetrievedProject(response.data))
-            .catch(err => console.log(err));
+        if(project){
+            axios.get<Project>(`${API_ENDPOINT}/project/${project?.id}`)
+                .then(response => setRetrievedProject(response.data))
+                .catch(err => console.log(err));
+        }
     } ,[project])
 
     return (
