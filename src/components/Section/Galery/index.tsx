@@ -3,7 +3,7 @@ import Card from "./Card";
 import Section from "..";
 import Project from "../../../models/Project";
 import { faCodePullRequest } from "@fortawesome/free-solid-svg-icons";
-import { MouseEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const GaleryDivStyled = styled.div`
