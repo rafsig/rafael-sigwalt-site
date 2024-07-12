@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import { specialFontColor } from "./components/GlobalStyle/styleVariables";
 import { BrowserRouter as Router,  Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-
+import ProjectGalery from "./pages/ProjectGalery";
 
 const ContentContainer = styled.div`
   max-width:1400px;
@@ -26,8 +26,6 @@ const EndBar = styled.div`
 
 function App() {
 
-  
-
   return (
     <>
       <GlobalStyle></GlobalStyle>
@@ -37,7 +35,8 @@ function App() {
           <Router>
             <Routes>
               <Route path="/">
-                <Route index element={<Home/>}></Route>
+                <Route index element={<Home/>}/>
+                <Route path="projectGalery" element={<ProjectGalery/>}/>
               </Route>
             </Routes>
           </Router>
