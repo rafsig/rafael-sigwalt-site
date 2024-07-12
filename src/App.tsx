@@ -9,6 +9,7 @@ import Skills from "./components/Section/Skills";
 import Modal from "./components/Modal";
 import Project from "./models/Project";
 import { specialFontColor } from "./components/GlobalStyle/styleVariables";
+import axios from "axios";
 
 
 const ContentContainer = styled.div`
@@ -33,6 +34,17 @@ function App() {
 
   const [project, setProject] = useState<Project>();
 
+  const API_ENDPOINT = import.meta.env.VITE_REACT_APP_CLIENT_ID;
+
+  function selectProject(event:React.MouseEvent<HTMLDivElement, MouseEvent>, project: Project) {
+    event.stopPropagation();
+    if(project.id) {
+      axios.get<Project>(`${API_ENDPOINT}/project/${project?.id}`)
+          .then(response => setProject(response.data))
+          .catch(err => console.log(err));
+    }
+  }
+
   return (
     <>
       <GlobalStyle></GlobalStyle>
@@ -42,7 +54,7 @@ function App() {
           <AboutMe/>
           <Skills/>
           <WorkExperienceSection/>
-          <Galery onSelectProject={setProject}></Galery>
+          <Galery onSelectProject={selectProject}></Galery>
         </ContentContainer>
         <EndBar/>
         <Modal project={project} setProject={setProject}/>
