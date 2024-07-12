@@ -4,9 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { SkillList, Skill } from "../Skills";
 import { sectionTitleColor, specialFontColor } from "../GlobalStyle/styleVariables";
-import { useEffect, useState } from "react";
-import axios from "axios";
-
 
 const Overlay = styled.div`
     background-color: rgba(0,0,0,0.5);
