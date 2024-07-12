@@ -1,15 +1,9 @@
 import styled from "styled-components"
 import GlobalStyle from "./components/GlobalStyle";
 import Header from "./components/Header";
-import { useState } from "react";
-import Galery from "./components/Section/Galery";
-import WorkExperienceSection from "./components/Section/WorkExperience";
-import AboutMe from "./components/Section/AboutMe";
-import Skills from "./components/Section/Skills";
-import Modal from "./components/Modal";
-import Project from "./models/Project";
 import { specialFontColor } from "./components/GlobalStyle/styleVariables";
-import axios from "axios";
+import { BrowserRouter as Router,  Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
 
 
 const ContentContainer = styled.div`
@@ -32,18 +26,7 @@ const EndBar = styled.div`
 
 function App() {
 
-  const [project, setProject] = useState<Project>();
-
-  const API_ENDPOINT = import.meta.env.VITE_REACT_APP_CLIENT_ID;
-
-  function selectProject(event:React.MouseEvent<HTMLDivElement, MouseEvent>, project: Project) {
-    event.stopPropagation();
-    if(project.id) {
-      axios.get<Project>(`${API_ENDPOINT}/project/${project?.id}`)
-          .then(response => setProject(response.data))
-          .catch(err => console.log(err));
-    }
-  }
+  
 
   return (
     <>
@@ -51,13 +34,15 @@ function App() {
       <Header></Header>
       <MainStyled>
         <ContentContainer>
-          <AboutMe/>
-          <Skills/>
-          <WorkExperienceSection/>
-          <Galery onSelectProject={selectProject}></Galery>
+          <Router>
+            <Routes>
+              <Route path="/">
+                <Route index element={<Home/>}></Route>
+              </Route>
+            </Routes>
+          </Router>
         </ContentContainer>
         <EndBar/>
-        <Modal project={project} setProject={setProject}/>
       </MainStyled>
     </>
   )
