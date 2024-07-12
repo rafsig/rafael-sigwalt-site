@@ -60,7 +60,7 @@ const Description = styled.p`
 const Card = (props:GaleryCardProps) => {
 
     return (
-        <CardDivStyled onClick={event =>  {event.stopPropagation(); props.onSelectProject(props.project);}}>
+        <CardDivStyled onClick={event => {props.onSelectProject(event, props.project);}}>
             <CardImageStyled src={props.project.imageUrl}></CardImageStyled>
             <CardContentCotainer>
                 <CardTitle>{props.project.title}</CardTitle>

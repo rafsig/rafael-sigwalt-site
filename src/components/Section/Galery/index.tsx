@@ -3,7 +3,7 @@ import Card from "./Card";
 import Section from "..";
 import Project from "../../../models/Project";
 import { faCodePullRequest } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import axios from "axios";
 
 const GaleryDivStyled = styled.div`
@@ -20,7 +20,7 @@ const GaleryDivStyled = styled.div`
 
 
 
-const Galery = ({onSelectProject}:{onSelectProject:React.Dispatch<React.SetStateAction<Project | undefined>>}) => {
+const Galery = ({onSelectProject}:{onSelectProject:Function}) => {
 
     const [projects, setProjects] = useState<Project[]>([]); 
 
