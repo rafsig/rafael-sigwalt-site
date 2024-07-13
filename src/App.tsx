@@ -32,7 +32,6 @@ function App() {
       <Header></Header>
       <MainStyled>
         <ContentContainer>
-          
             <Routes>
               <Route path="/">
                 <Route index element={<Home/>}/>
