@@ -45,7 +45,7 @@ const AboutMe = () => {
                 {about?.personalDescription}
             </DescriptionParagraph>
             <DescriptionParagraph>
-            Fell free to connect with me on 
+            Feel free to connect with me on 
                 <a href={about?.links.linkedIn} target="_blank" rel="noreferrer"> LinkedIn</a> or explore my  
                 <a href={about?.links.github} target="_blank" rel="noreferrer"> GitHub</a> respositories
             </DescriptionParagraph>
