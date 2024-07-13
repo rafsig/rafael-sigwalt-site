@@ -20,6 +20,7 @@ const CarrouselContainer = styled.div`
     gap: 10px;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
     button {
         border:none;
         cursor: pointer;
@@ -35,7 +36,10 @@ const Item = styled.div<ItemProp>`
     width: ${props => props.$selected ? '10px' : '8px'};;
     background-color: ${props => props.$selected ? specialFontColor : disabledColor};
     margin:10px;
-    border-radius: ${props => props.$selected ? '5px' : '4px'};;
+    border-radius: ${props => props.$selected ? '5px' : '4px'};
+    @media (max-width: 800px) {
+        visibility: hidden;
+    }
 `
 
 const WorkExperienceSection = () => {
@@ -68,10 +72,7 @@ const WorkExperienceSection = () => {
 
     return (
         <Section id="WorkExperience" title="Work Experience" titlePosition="top" icon={faLaptopCode}>
-            { experienceList[experienceIndex] &&
-            <WorkExperienceCard {...experienceList[experienceIndex]} />
-            }
-            <CarrouselContainer>
+             <CarrouselContainer>
                 <button 
                     disabled={experienceIndex === 0 ? true : false} 
                     onClick={goToPreviousExperience}>
@@ -83,6 +84,10 @@ const WorkExperienceSection = () => {
                 }
                 <button disabled={experienceIndex === experienceList.length - 1 ? true : false} onClick={goToNextExperience}>Next <FontAwesomeIcon icon={faChevronRight}/></button>
             </CarrouselContainer>
+            { experienceList[experienceIndex] &&
+            <WorkExperienceCard {...experienceList[experienceIndex]} />
+            }
+           
         </Section>
     );
 }
