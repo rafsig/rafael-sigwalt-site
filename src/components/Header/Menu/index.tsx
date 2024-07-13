@@ -60,6 +60,17 @@ const Overlay = styled.div<MenuProps>`
 `
 
 const Menu = () => {
+
+    const routes = [
+        {
+            label:'Home',
+            to:'/'
+        },
+        {
+            label:'Project Galery',
+            to:'/projectGalery'
+        }
+    ]
     
     const [menuVisibility, setMenuVisibility] = useState("hidden");
     
@@ -68,10 +79,9 @@ const Menu = () => {
         <Overlay $visibility={menuVisibility} onClick={toggleMenuVisibility}/>
         <BarsIcon onClick={toggleMenuVisibility}><FontAwesomeIcon icon={faBars}/></BarsIcon>
         <ListStyled $visibility={menuVisibility}>
-            <MenuItem text="About Me" target="AboutMe" onSelectSection={setMenuVisibility}/>
-            <MenuItem text="Skills" target="Skills" onSelectSection={setMenuVisibility}/>
-            <MenuItem text="Work Experience" target="WorkExperience" onSelectSection={setMenuVisibility}/>
-            <MenuItem text="Projects" target="Projects" onSelectSection={setMenuVisibility}/>
+            {routes.map(route => 
+                <MenuItem text={route.label} target={route.to} onSelectSection={setMenuVisibility}/>
+            )}
         </ListStyled>
     </NavStyled>);
 

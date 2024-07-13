@@ -30,23 +30,22 @@ function App() {
   
 
   return (
-    <>
+    <Router>
       <GlobalStyle></GlobalStyle>
       <Header></Header>
       <MainStyled>
         <ContentContainer>
-          <Router>
+          
             <Routes>
               <Route path="/">
                 <Route index element={<Home/>}/>
                 <Route path="projectGalery" element={<ProjectGalery/>}/>
               </Route>
             </Routes>
-          </Router>
         </ContentContainer>
         <EndBar/>
       </MainStyled>
-    </>
+    </Router>
   )
 }
 
