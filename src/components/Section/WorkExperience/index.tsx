@@ -28,6 +28,9 @@ const CarrouselContainer = styled.div`
         font-size: 1.2em;
         padding:10px;
         color:${specialFontColor};
+        &:disabled {
+            color:${disabledColor};
+        }
     }
 `
 
