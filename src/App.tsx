@@ -6,7 +6,6 @@ import { BrowserRouter as Router,  Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import ProjectGalery from "./pages/ProjectGalery";
 
-
 const ContentContainer = styled.div`
   max-width:1400px;
   width: 100%;
@@ -26,8 +25,6 @@ const EndBar = styled.div`
 `  
 
 function App() {
-
-  
 
   return (
     <Router>
