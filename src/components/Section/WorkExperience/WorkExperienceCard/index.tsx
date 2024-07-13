@@ -10,8 +10,11 @@ const WorkExperienceDiv = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     min-height:calc(100vh - 160px - 60px - 135px - 80px);
     height: fit-content;
-    @media(max-width: 1400px) {
-        height:fit-content;
+    display: flex;
+    flex-direction: row;
+    @media(max-width:1000px) {
+        flex-direction: column;
+        gap:30px
     }
 ` 
 
@@ -25,17 +28,6 @@ const WorkExperienceDates = styled.h5`
     font-size: 1.1em;
     color: #616161;
 `;
-
-const ContentContainer = styled.div`
-    width:100%;
-    height:100%;
-    display: flex;
-    flex-direction: row;
-    @media(max-width:1000px) {
-        flex-direction: column;
-        gap:30px
-    }
-`
 
 const ColumnContainer = styled.div`
     width:50%;
@@ -51,14 +43,11 @@ const ColumnContainer = styled.div`
 const WorkExperienceCard = (props:WorkExperience) => {
     return (
     <WorkExperienceDiv>
-        
-        <ContentContainer>
-            <ColumnContainer>
-            <WorkExperienceTitle>{`${props.role} at ${props.companyName}`}</WorkExperienceTitle>
-            <WorkExperienceDates>{`from ${props.dateStart} to ${props.dateEnd}`}</WorkExperienceDates>
-            {props.description}</ColumnContainer> 
-            <ColumnContainer> <HighlightsList highlights = {props.highlights}/> </ColumnContainer>
-        </ContentContainer>
+        <ColumnContainer>
+        <WorkExperienceTitle>{`${props.role} at ${props.companyName}`}</WorkExperienceTitle>
+        <WorkExperienceDates>{`from ${props.dateStart} to ${props.dateEnd}`}</WorkExperienceDates>
+        {props.description}</ColumnContainer> 
+        <ColumnContainer> <HighlightsList highlights = {props.highlights}/> </ColumnContainer>
     </WorkExperienceDiv>);
 }
 
