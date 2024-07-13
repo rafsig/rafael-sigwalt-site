@@ -42,6 +42,8 @@ const Item = styled.div<ItemProp>`
     border-radius: ${props => props.$selected ? '5px' : '4px'};
     @media (max-width: 800px) {
         visibility: hidden;
+        position: absolute;
+        left:-999;
     }
 `
 
