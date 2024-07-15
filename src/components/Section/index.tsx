@@ -76,16 +76,15 @@ const SectionImage = styled.img<SectionProp>`
 `
 
 const SectionContent = styled.div<SectionProp>`
-    height :${props => props.$titlePosition === 'top'? 'calc(100vh - 295px)' : 'calc(100vh - 135px)'} ;
+    height:fit-content;
     width: ${props => props.$titlePosition === 'top'? '100%' : 'calc(1400px - 500px)'};
+    margin:auto 0;
     
     @media(max-width: 1400px) or (max-height:890px)  {
         width: calc(100% - 60px);
-        height:fit-content;
         margin: auto 30px;
     }
     @media(max-width: 1000px) or (max-height:890px)  {
-        height:fit-content;
         margin: 30px 30px;
     }
  `

@@ -1,0 +1,100 @@
+[
+    {
+        "id":1,
+        "imagePath":"/images/certificates/machine-learning.png",
+        "title":"Machine Learning, Modeling, and Simulation: Engineering Problem-Solving in the Age of AI",
+        "concluded":"June 2024",
+        "institution":"MIT"
+    },
+    {
+        "id":2,
+        "imagePath":"/images/certificates/microservices.png",
+        "title":"Microservices: Design Patterns",
+        "concluded":"March 2024",
+        "institution":"Alura"
+    },
+    {
+        "id":3,
+        "imagePath":"/images/certificates/asp.net-core.png",
+        "title":"ASP.NET Core",
+        "concluded":"January 2024",
+        "institution":"Alura"
+    },
+    {
+        "id":4,
+        "imagePath":"/images/certificates/csharp-and-object-orientation.png",
+        "title":"C# and Object Orientation",
+        "concluded":"December 2023",
+        "institution":"Alura"
+    },
+    {
+        "id":5,
+        "imagePath":"/images/certificates/design-patterns-2.png",
+        "title":"Design Patterns In Java II",
+        "concluded":"November 2021",
+        "institution":"Alura"
+    },
+    {
+        "id":6,
+        "imagePath":"/images/certificates/design-patterns-1.png",
+        "title":"Design Patterns In Java I",
+        "concluded":"April 2021",
+        "institution":"Alura"
+    },
+    {
+        "id":7,
+        "imagePath":"/images/certificates/java-and-jpa-2.png",
+        "title":"Java and JPA: Optimizations with JPA2 and Hibernate",
+        "concluded":"April 2021",
+        "institution":"Alura"
+    },
+    {
+        "id":8,
+        "imagePath":"/images/certificates/solid-with-java.png",
+        "title":"SOLID with Java: Principles of object-oriented programming",
+        "concluded":"March 2021",
+        "institution":"Alura"
+    },
+    {
+        "id":9,
+        "imagePath":"/images/certificates/threads-in-java-2.png",
+        "title":"Threads in Java 2: Advanced Concurrent Programming",
+        "concluded":"March 2021",
+        "institution":"Alura"
+    },
+    {
+        "id":10,
+        "imagePath":"/images/certificates/threads-in-java-1.png",
+        "title":"Threads in Java 1: Parallel Programming",
+        "concluded":"March 2021",
+        "institution":"Alura"
+    },
+    {
+        "id":11,
+        "imagePath":"/images/certificates/java-and-jpa.png",
+        "title":"Java and JPA: Object Persistance with JPA2 and Hibernate",
+        "concluded":"May 2020",
+        "institution":"Alura"
+    },
+    {
+        "id":12,
+        "imagePath":"/images/certificates/angular.png",
+        "title":"Angular",
+        "concluded":"March 2020",
+        "institution":"Alura"
+    },
+    {
+        "id":13,
+        "imagePath":"/images/certificates/angular.png",
+        "title":"Web Accessibility",
+        "concluded":"December 2020",
+        "institution":"Alura"
+    },
+    {
+        "id":14,
+        "imagePath":"/images/certificates/web-accessibility.png",
+        "title":"Angular",
+        "concluded":"March 2020",
+        "institution":"Alura"
+    }  
+]
