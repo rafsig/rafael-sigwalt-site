@@ -31,7 +31,7 @@ const ListStyled = styled.ul<MenuProps>`
     display: flex;
     width: 100%;
     justify-content: center;
-    gap: 20px;
+    gap: 0px;
     flex-flow: row;
     flex-grow: 0;
     @media (max-width:800px) {
@@ -69,6 +69,10 @@ const Menu = () => {
         {
             label:'Project Galery',
             to:'/projectGalery'
+        },
+        {
+            label:'Education',
+            to:'/education'
         }
     ]
     
@@ -79,8 +83,8 @@ const Menu = () => {
         <Overlay $visibility={menuVisibility} onClick={toggleMenuVisibility}/>
         <BarsIcon onClick={toggleMenuVisibility}><FontAwesomeIcon icon={faBars}/></BarsIcon>
         <ListStyled $visibility={menuVisibility}>
-            {routes.map(route => 
-                <MenuItem text={route.label} target={route.to} onSelectSection={setMenuVisibility}/>
+            {routes.map((route, index) => 
+                <MenuItem key={index} text={route.label} target={route.to} onSelectSection={setMenuVisibility}/>
             )}
         </ListStyled>
     </NavStyled>);

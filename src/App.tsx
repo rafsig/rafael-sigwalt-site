@@ -5,6 +5,7 @@ import { specialFontColor } from "./components/GlobalStyle/styleVariables";
 import { BrowserRouter as Router,  Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import ProjectGalery from "./pages/ProjectGalery";
+import EducationPage from "./pages/Education";
 
 const ContentContainer = styled.div`
   max-width:1400px;
@@ -35,6 +36,7 @@ function App() {
             <Routes>
               <Route path="/">
                 <Route index element={<Home/>}/>
+                <Route path="education" element={<EducationPage/>}/>
                 <Route path="projectGalery" element={<ProjectGalery/>}/>
               </Route>
             </Routes>
