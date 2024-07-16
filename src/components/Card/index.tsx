@@ -18,7 +18,6 @@ const CardDivStyled = styled.div`
     }
     @media (max-width:800px) {
         background-color: rgb(255, 255, 255);
-        height:500px;
         img{
             opacity: 100%;
         }
