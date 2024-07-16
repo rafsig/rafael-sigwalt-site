@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
 import styled from "styled-components";
+import CardProps from "../../models/props/CardProps";
 
 const CardDivStyled = styled.div`
     width:300px;
@@ -25,10 +25,10 @@ const CardDivStyled = styled.div`
     }
 `
 
-export default function Card({children}:{children:ReactNode}) {
+export default function Card(props:CardProps) {
     return (
-        <CardDivStyled>
-            {children}
+        <CardDivStyled onClick={event => props.callBack(event, props.selection)}>
+            {props.children}
         </CardDivStyled>);
 
 

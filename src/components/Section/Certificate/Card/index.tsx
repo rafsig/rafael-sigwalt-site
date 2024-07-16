@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import CardDiv from "../../../Card";
 import Certificate from "../../../../models/Certificate";
-
+import Card from "../../../Card";
 
 const CardImage = styled.img`
     width: 100%;
@@ -31,9 +30,17 @@ const LeftCell = styled.td`
     text-align: right;
 `
 
-export default function CertificateCard({certificate}:{certificate:Certificate}) {
+export default function CertificateCard({certificate, setCertificate}:{certificate:Certificate, setCertificate:React.Dispatch<React.SetStateAction<Certificate | undefined>>}) {
+
+    function selectCertificate(event:React.MouseEvent<HTMLDivElement, MouseEvent>, certificate:Certificate) {
+        event.stopPropagation();
+        if(certificate.id) {
+            setCertificate(certificate);
+        }
+    }
+
     return (
-        <CardDiv>
+        <Card callBack={selectCertificate} selection={certificate}>
             <CardImage src={certificate.imagePath}/>
             <Table>
                 <tbody>
@@ -62,5 +69,5 @@ export default function CertificateCard({certificate}:{certificate:Certificate})
                     </tr>
                 </tbody>
             </Table>
-    </CardDiv>);
+    </Card>);
 }
