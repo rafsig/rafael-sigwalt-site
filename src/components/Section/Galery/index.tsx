@@ -13,6 +13,7 @@ const GaleryDivStyled = styled.div`
     justify-content: left;
     margin: 40px;
     gap:40px;
+    min-height: calc(100vh - 135px - 160px - 25px - 80px);
     @media (max-width:780px) {
         justify-content: center;
     }
