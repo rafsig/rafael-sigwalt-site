@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Certificate from "../../../../models/Certificate";
 import Card from "../../../Card";
-import axios from "axios";
 
 const CardImage = styled.img`
     width: 100%;
@@ -33,14 +32,10 @@ const LeftCell = styled.td`
 
 export default function CertificateCard({certificate, setCertificate}:{certificate:Certificate, setCertificate:React.Dispatch<React.SetStateAction<Certificate | undefined>>}) {
 
-    const API_ENDPOINT = import.meta.env.VITE_REACT_APP_CLIENT_ID;
-
     function selectCertificate(event:React.MouseEvent<HTMLDivElement, MouseEvent>, certificate:Certificate) {
         event.stopPropagation();
         if(certificate.id) {
-        axios.get<Certificate>(`${API_ENDPOINT}/project/${certificate?.id}`)
-            .then(response => setCertificate(response.data))
-            .catch(err => console.log(err));
+            setCertificate(certificate);
         }
     }
 
