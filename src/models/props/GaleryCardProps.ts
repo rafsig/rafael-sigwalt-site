@@ -2,5 +2,5 @@ import Project from "../Project";
 
 export interface GaleryCardProps{
     project:Project;
-    onSelectProject:Function;
+    setProject:React.Dispatch<React.SetStateAction<Project | undefined>>;
 }

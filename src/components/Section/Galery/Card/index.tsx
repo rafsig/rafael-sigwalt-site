@@ -1,29 +1,9 @@
 import styled from "styled-components";
 import { GaleryCardProps } from "../../../../models/props/GaleryCardProps";
 import { SkillList, Skill } from "../../../Skills";
-
-const CardDivStyled = styled.div`
-    width:300px;
-    height:420px;
-    background-color: rgba(240, 240, 240, 0.80);
-    border-radius: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    overflow: hidden;
-    &:hover{
-        background-color: rgb(255, 255, 255);
-        cursor: pointer;
-        img{
-            opacity: 100%;
-        }
-    }
-    @media (max-width:800px) {
-        background-color: rgb(255, 255, 255);
-        height:500px;
-        img{
-            opacity: 100%;
-        }
-    }
-`
+import axios from "axios";
+import Project from "../../../../models/Project";
+import Card from "../../../Card";
 
 const CardImageStyled = styled.img`
     width:100%;
@@ -35,7 +15,7 @@ const CardImageStyled = styled.img`
 `
 const CardContentCotainer = styled.div`
     padding:10px 10px;
-    height: 77%;
+    height: 238px;
     display: flex;
     flex-direction: column;
     gap:30px;
@@ -56,11 +36,21 @@ const Description = styled.p`
     }
 `
 
+const ProjectCard = (props:GaleryCardProps) => {
 
-const Card = (props:GaleryCardProps) => {
+    const API_ENDPOINT = import.meta.env.VITE_REACT_APP_CLIENT_ID;
+
+    function selectProject(event:React.MouseEvent<HTMLDivElement, MouseEvent>, project: Project) {
+        event.stopPropagation();
+        if(project.id) {
+        axios.get<Project>(`${API_ENDPOINT}/project/${project?.id}`)
+            .then(response => props.setProject(response.data))
+            .catch(err => console.log(err));
+        }
+    }
 
     return (
-        <CardDivStyled onClick={event => {props.onSelectProject(event, props.project);}}>
+        <Card callBack={selectProject} selection={props.project}>
             <CardImageStyled src={props.project.imageUrl}></CardImageStyled>
             <CardContentCotainer>
                 <CardTitle>{props.project.title}</CardTitle>
@@ -78,8 +68,8 @@ const Card = (props:GaleryCardProps) => {
                 }
                 
             </CardContentCotainer>
-        </CardDivStyled>  
+        </Card>  
     );
 }
 
-export default Card;
+export default ProjectCard;

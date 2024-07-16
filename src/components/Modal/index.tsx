@@ -91,7 +91,7 @@ const Modal = ({project, setProject}:{project?:Project, setProject:React.Dispatc
                     }
                     <h4>Skills</h4>
                     <SkillList>
-                        {project.skills.map(skill => <Skill>{skill}</Skill>)}
+                        {project.skills.map((skill, index) => <Skill key={index}>{skill}</Skill>)}
                     </SkillList>
                     {
                         project.git ?

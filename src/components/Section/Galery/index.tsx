@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import Card from "./Card";
 import Section from "..";
 import Project from "../../../models/Project";
 import { faCodePullRequest } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ProjectCard from "./Card";
 
 const GaleryDivStyled = styled.div`
     display: flex;
@@ -21,7 +21,7 @@ const GaleryDivStyled = styled.div`
 
 
 
-const Galery = ({onSelectProject}:{onSelectProject:Function}) => {
+const Galery = ({setProject}:{setProject:React.Dispatch<React.SetStateAction<Project | undefined>>}) => {
 
     const [projects, setProjects] = useState<Project[]>([]); 
 
@@ -31,16 +31,16 @@ const Galery = ({onSelectProject}:{onSelectProject:Function}) => {
         axios.get<Project[]>(`${API_ENDPOINT}/project`)
             .then(response => setProjects(response.data))
             .catch(err => console.log(err));
-    }, [])
+    }, []);
 
     return (
         <Section id="Projects" title="Projects Galery" titlePosition="top" icon={faCodePullRequest}>
             <GaleryDivStyled>
                 {projects.map((project, index) => 
-                    (<Card
+                    (<ProjectCard
                         key={index}
                         project={project}
-                        onSelectProject={onSelectProject} />))}
+                        setProject={setProject} />))}
             </GaleryDivStyled>
         </Section>
     );
