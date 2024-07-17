@@ -3,5 +3,7 @@ export default interface Certificate{
     imagePath:string,
     title:string,
     concluded:string,
-    institution:string
+    institution:string,
+    url:string,
+    outcomes:string[]
 }
