@@ -34,7 +34,10 @@ const OutcomesList = styled.ul`
         width: 28%;
     }
     @media (max-width: 800px){
-        flex-flow: row nowrap;
+        flex-flow: column nowrap;
+        li{
+            width:100%;
+        }
     }
 `
 
