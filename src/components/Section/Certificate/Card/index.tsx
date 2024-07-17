@@ -21,7 +21,7 @@ const Table = styled.table`
 const CardTitle = styled.h3`
     font-size: 1.1em;
     font-weight: bold;
-    height: 4em;
+    height: 5em;
     padding:0;
     margin: 0;
 `
