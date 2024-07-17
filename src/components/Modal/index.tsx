@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { ReactNode } from "react";
+import { sectionTitleColor, specialFontColor } from "../GlobalStyle/styleVariables";
 
 const Overlay = styled.div`
     background-color: rgba(0,0,0,0.5);
@@ -28,6 +29,13 @@ const DialogStyled = styled.dialog`
     scrollbar-width:none;
     z-index: 1001;
 `
+const ModalTitle = styled.h2`
+text-align: center;
+padding:20px;
+margin:0;
+background-color: ${sectionTitleColor};
+color:${specialFontColor};
+`
 
 const FormStyled = styled.form`
     position: absolute;
@@ -42,18 +50,19 @@ const CloseButton = styled.button`
     background-color: transparent;
 `
 
-const Modal = ({project: entity, setProject, children}:{project?:any, setProject:Function, children:ReactNode}) => {
+const Modal = ({entity, callback, children}:{entity?:any, callback:Function, children:ReactNode}) => {
 
     return (
     <>
         {entity?
         (
         <>
-            <Overlay onClick={() => setProject(undefined)}/>
+            <Overlay onClick={() => callback(undefined)}/>
             <DialogStyled open={entity ? true : false}>
+                <ModalTitle>{entity.title}</ModalTitle>
                {children}
                 <FormStyled method="dialog">
-                    <CloseButton onClick={() => {setProject(undefined)}}><FontAwesomeIcon icon={faX}/></CloseButton>
+                    <CloseButton onClick={() => {callback(undefined)}}><FontAwesomeIcon icon={faX}/></CloseButton>
                 </FormStyled>
             </DialogStyled>
         </>

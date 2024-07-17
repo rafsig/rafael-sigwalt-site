@@ -1,16 +1,7 @@
 import styled from "styled-components";
-import { sectionTitleColor, specialFontColor } from "../../../GlobalStyle/styleVariables";
 import { Skill, SkillList } from "../../../Skills";
 import Project from "../../../../models/Project";
 import Modal from "../../../Modal";
-
-const ModalTitle = styled.h2`
-text-align: center;
-padding:20px;
-margin:0;
-background-color: ${sectionTitleColor};
-color:${specialFontColor};
-`
 
 const ProjectImage = styled.img`
 display: block;
@@ -29,8 +20,7 @@ line-height: 1.5em;
 export default function ProjectModal({project, setProject}:{project?:Project, setProject:React.Dispatch<React.SetStateAction<Project | undefined>>}) {
 
     return (
-    <Modal project={project} setProject={setProject}>
-        <ModalTitle>{project?.title}</ModalTitle>
+    <Modal entity={project} callback={setProject}>
         <ProjectImage src={project?.imageUrl}></ProjectImage>
         <InfoContainer>
             <h4>Description</h4>
