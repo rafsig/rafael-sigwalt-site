@@ -33,6 +33,9 @@ const OutcomesList = styled.ul`
     li{
         width: 28%;
     }
+    @media (max-width: 800px){
+        flex-flow: row nowrap;
+    }
 `
 
 export default function CertificateModal({certificate, setCertificate}:{certificate:Certificate | undefined, setCertificate:React.Dispatch<React.SetStateAction<Certificate | undefined>>}) {
