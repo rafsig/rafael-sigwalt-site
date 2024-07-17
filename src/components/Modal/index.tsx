@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import Project from "../../models/Project";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
-import { SkillList, Skill } from "../Skills";
-import { sectionTitleColor, specialFontColor } from "../GlobalStyle/styleVariables";
+import { ReactNode } from "react";
 
 const Overlay = styled.div`
     background-color: rgba(0,0,0,0.5);
@@ -44,64 +42,16 @@ const CloseButton = styled.button`
     background-color: transparent;
 `
 
-const ModalTitle = styled.h2`
-    text-align: center;
-    padding:20px;
-    margin:0;
-    background-color: ${sectionTitleColor};
-    color:${specialFontColor};
-`
-
-const ProjectImage = styled.img`
-    display: block;
-    margin: 0 auto;
-    width:80%;
-    max-height: 30%;
-    object-fit: cover;
-    object-position: top;
-`
-
-const InfoContainer = styled.div`
-    padding: 20px;
-    line-height: 1.5em;
-`
-
-const Modal = ({project, setProject}:{project?:Project, setProject:React.Dispatch<React.SetStateAction<Project | undefined>>}) => {
+const Modal = ({project: entity, setProject, children}:{project?:any, setProject:Function, children:ReactNode}) => {
 
     return (
     <>
-        {project?
+        {entity?
         (
         <>
             <Overlay onClick={() => setProject(undefined)}/>
-            <DialogStyled open={project ? true : false}>
-                <ModalTitle>{project.title}</ModalTitle>
-                <ProjectImage src={project.imageUrl}></ProjectImage>
-                <InfoContainer>
-                    <h4>Description</h4>
-                    <p>{project.description}</p>
-                    
-                    {
-                    project.nextSteps?
-                        <>
-                        <h4>Next Steps</h4> 
-                        <ol>
-                            {project.nextSteps.map(nextStep => <li>{nextStep}</li>)}
-                        </ol></>: <></>
-                    }
-                    <h4>Skills</h4>
-                    <SkillList>
-                        {project.skills.map((skill, index) => <Skill key={index}>{skill}</Skill>)}
-                    </SkillList>
-                    {
-                        project.git ?
-                        <>
-                            <h4>Links</h4>
-                            <a href={project.git}>GitHub</a>
-                        </>
-                        : <></>
-                    }
-                </InfoContainer>
+            <DialogStyled open={entity ? true : false}>
+               {children}
                 <FormStyled method="dialog">
                     <CloseButton onClick={() => {setProject(undefined)}}><FontAwesomeIcon icon={faX}/></CloseButton>
                 </FormStyled>
