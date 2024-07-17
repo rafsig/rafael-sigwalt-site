@@ -35,6 +35,9 @@ const OutcomesList = styled.ul`
     }
     @media (max-width: 800px){
         flex-flow: column nowrap;
+        li{
+            width:100%;
+        }
     }
 `
 
