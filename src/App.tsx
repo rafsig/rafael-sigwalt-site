@@ -6,6 +6,7 @@ import { BrowserRouter as Router,  Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import ProjectGalery from "./pages/ProjectGalery";
 import EducationPage from "./pages/Education";
+import NotFound from "./pages/NotFound";
 
 const ContentContainer = styled.div`
   max-width:1400px;
@@ -39,6 +40,7 @@ function App() {
                 <Route path="education" element={<EducationPage/>}/>
                 <Route path="projectGalery" element={<ProjectGalery/>}/>
               </Route>
+              <Route path="/*" element={<NotFound/>}/>
             </Routes>
         </ContentContainer>
         <EndBar/>
