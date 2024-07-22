@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import Section from "..";
-import { useEffect, useState } from "react";
-import About from "../../../models/About";
-import axios from "axios";
+import { useAbout } from "../../../state/hooks/AboutHook";
+
 
 const AboutMeContainer = styled.div`
     display:flex;
@@ -21,19 +20,8 @@ const DescriptionParagraph = styled.p`
 
 
 const AboutMe = () => {
-    const API_ENDPOINT = import.meta.env.VITE_REACT_APP_CLIENT_ID;
 
-    const [about, setAbout] = useState<About | undefined>();
-    
-    useEffect(() => {
-        axios
-            .get<About>(`${API_ENDPOINT}/about`)
-            .then(result => {
-                setAbout(result.data);
-                console.log(import.meta);
-            })
-            .catch(err => console.log(err));
-    } , [] );
+    const about = useAbout();
 
     return(
     <Section id="AboutMe" title="About Me" titlePosition="left" imagePath="/images/profile-picture.jpg">

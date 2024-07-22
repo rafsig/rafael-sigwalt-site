@@ -7,6 +7,8 @@ import Home from "./pages/Home";
 import ProjectGalery from "./pages/ProjectGalery";
 import EducationPage from "./pages/Education";
 import NotFound from "./pages/NotFound";
+import { RecoilRoot } from "recoil";
+import { Suspense } from "react";
 
 const ContentContainer = styled.div`
   max-width:1400px;
@@ -29,23 +31,27 @@ const EndBar = styled.div`
 function App() {
 
   return (
-    <Router>
-      <GlobalStyle></GlobalStyle>
-      <Header></Header>
-      <MainStyled>
-        <ContentContainer>
-            <Routes>
-              <Route path="/">
-                <Route index element={<Home/>}/>
-                <Route path="education" element={<EducationPage/>}/>
-                <Route path="projectGalery" element={<ProjectGalery/>}/>
-              </Route>
-              <Route path="/*" element={<NotFound/>}/>
-            </Routes>
-        </ContentContainer>
-        <EndBar/>
-      </MainStyled>
-    </Router>
+    <RecoilRoot>
+      <Suspense fallback="Hello World">
+        <Router>
+          <GlobalStyle></GlobalStyle>
+          <Header></Header>
+          <MainStyled>
+            <ContentContainer>
+                <Routes>
+                  <Route path="/">
+                    <Route index element={<Home/>}/>
+                    <Route path="education" element={<EducationPage/>}/>
+                    <Route path="projectGalery" element={<ProjectGalery/>}/>
+                  </Route>
+                  <Route path="/*" element={<NotFound/>}/>
+                </Routes>
+            </ContentContainer>
+            <EndBar/>
+          </MainStyled>
+        </Router>
+      </Suspense>
+    </RecoilRoot>
   )
 }
 

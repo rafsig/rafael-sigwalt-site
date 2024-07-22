@@ -1,10 +1,8 @@
 import styled from "styled-components";
 import Section from "..";
-import Project from "../../../models/Project";
 import { faCodePullRequest } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import ProjectCard from "./Card";
+import { useProjectList } from "../../../state/hooks/ProjectHook";
 
 const GaleryDivStyled = styled.div`
     display: flex;
@@ -21,17 +19,10 @@ const GaleryDivStyled = styled.div`
 
 
 
-const Galery = ({setProject}:{setProject:React.Dispatch<React.SetStateAction<Project | undefined>>}) => {
+const Galery = () => {
 
-    const [projects, setProjects] = useState<Project[]>([]); 
+    const projects = useProjectList();
 
-    const API_ENDPOINT = import.meta.env.VITE_REACT_APP_CLIENT_ID;
-
-    useEffect(() => {
-        axios.get<Project[]>(`${API_ENDPOINT}/project`)
-            .then(response => setProjects(response.data))
-            .catch(err => console.log(err));
-    }, []);
 
     return (
         <Section id="Projects" title="Projects Galery" titlePosition="top" icon={faCodePullRequest}>
@@ -40,7 +31,7 @@ const Galery = ({setProject}:{setProject:React.Dispatch<React.SetStateAction<Pro
                     (<ProjectCard
                         key={index}
                         project={project}
-                        setProject={setProject} />))}
+                        />))}
             </GaleryDivStyled>
         </Section>
     );
