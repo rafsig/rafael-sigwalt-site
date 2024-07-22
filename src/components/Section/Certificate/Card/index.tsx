@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Certificate from "../../../../models/Certificate";
 import Card from "../../../Card";
 
+import { useSetCertificate } from "../../../../state/hooks/CertificateHook";
+
 const CardImage = styled.img`
     width: 100%;
     height: fit-content;
@@ -30,7 +32,9 @@ const LeftCell = styled.td`
     text-align: right;
 `
 
-export default function CertificateCard({certificate, setCertificate}:{certificate:Certificate, setCertificate:React.Dispatch<React.SetStateAction<Certificate | undefined>>}) {
+export default function CertificateCard({certificate}:{certificate:Certificate,}) {
+
+    const setCertificate = useSetCertificate();
 
     function selectCertificate(event:React.MouseEvent<HTMLDivElement, MouseEvent>, certificate:Certificate) {
         event.stopPropagation();

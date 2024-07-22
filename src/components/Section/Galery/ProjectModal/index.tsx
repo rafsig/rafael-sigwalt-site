@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Skill, SkillList } from "../../../Skills";
-import Project from "../../../../models/Project";
 import Modal from "../../../Modal";
+import { useProejct, useSetProjectId } from "../../../../state/hooks/ProjectHook";
 
 const ProjectImage = styled.img`
 display: block;
@@ -17,10 +17,13 @@ padding: 20px;
 line-height: 1.5em;
 `
 
-export default function ProjectModal({project, setProject}:{project?:Project, setProject:React.Dispatch<React.SetStateAction<Project | undefined>>}) {
+export default function ProjectModal() {
+
+    const project = useProejct();
+    const setProjectId = useSetProjectId();
 
     return (
-    <Modal entity={project} callback={setProject}>
+    <Modal entity={project} callback={setProjectId}>
         <ProjectImage src={project?.imageUrl}></ProjectImage>
         <InfoContainer>
             <h4>Description</h4>
@@ -31,7 +34,7 @@ export default function ProjectModal({project, setProject}:{project?:Project, se
                 <>
                 <h4>Next Steps</h4> 
                 <ol>
-                    {project.nextSteps.map(nextStep => <li>{nextStep}</li>)}
+                    {project.nextSteps.map((nextStep, index) => <li key={index}>{nextStep}</li>)}
                 </ol></>: <></>
             }
             <h4>Skills</h4>

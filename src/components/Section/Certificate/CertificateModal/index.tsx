@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Certificate from "../../../../models/Certificate";
 import Modal from "../../../Modal";
 import { CallToActionLink } from "../../../CallToAction";
+import { useCertificateState } from "../../../../state/hooks/CertificateHook";
 
 const CardImage = styled.img`
     width: 100%;
@@ -41,7 +41,9 @@ const OutcomesList = styled.ul`
     }
 `
 
-export default function CertificateModal({certificate, setCertificate}:{certificate:Certificate | undefined, setCertificate:React.Dispatch<React.SetStateAction<Certificate | undefined>>}) {
+export default function CertificateModal() {
+
+    const [certificate, setCertificate] = useCertificateState();
 
     return (
         <Modal entity={certificate} callback={setCertificate}>
@@ -50,7 +52,7 @@ export default function CertificateModal({certificate, setCertificate}:{certific
                 <CallToActionLink href={certificate?.url} target="_blank" rel="no_referrer">View Certificate </CallToActionLink>
                 <ContentTitle>Content</ContentTitle>
                 <OutcomesList>
-                {certificate?.outcomes.map(outcome => <li>{outcome}</li>)}
+                {certificate?.outcomes.map((outcome, index) => <li key={index}>{outcome}</li>)}
                 </OutcomesList>
             </Content>   
         </Modal>

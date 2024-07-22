@@ -3,10 +3,10 @@ import { faChevronLeft, faChevronRight, faLaptopCode } from "@fortawesome/free-s
 import WorkExperienceCard from "./WorkExperienceCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
-import WorkExperience from "../../../models/WorkExperience";
 import { disabledColor, specialFontColor } from "../../GlobalStyle/styleVariables";
-import axios from "axios";
+
+import { useState } from "react";
+import { useWorkExperienceList } from "../../../state/hooks/WorkExperienceHook";
 
 
 interface ItemProp {
@@ -49,19 +49,11 @@ const Item = styled.div<ItemProp>`
 
 const WorkExperienceSection = () => {
 
-    const API_ENDPOINT = import.meta.env.VITE_REACT_APP_CLIENT_ID;
+
     
     const [experienceIndex, setExperienceIndex] = useState(0);
 
-    const [experienceList, setExperienceList] = useState<WorkExperience[]>([]);
-
-    useEffect(() => {
-        axios.get<WorkExperience[]>(`${API_ENDPOINT}/workExperience`)
-            .then(response => setExperienceList(response.data))
-            .catch(err => console.log(err));
-
-            setExperienceIndex(0);
-    } ,[]);
+    const experienceList = useWorkExperienceList();
 
     function goToNextExperience() {
         if(experienceIndex < experienceList.length - 1) {

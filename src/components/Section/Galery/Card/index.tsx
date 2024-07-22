@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { GaleryCardProps } from "../../../../models/props/GaleryCardProps";
 import { SkillList, Skill } from "../../../Skills";
-import axios from "axios";
 import Project from "../../../../models/Project";
 import Card from "../../../Card";
+import { useSetProjectId } from "../../../../state/hooks/ProjectHook";
 
 const CardImageStyled = styled.img`
     width:100%;
@@ -38,15 +38,11 @@ const Description = styled.p`
 
 const ProjectCard = (props:GaleryCardProps) => {
 
-    const API_ENDPOINT = import.meta.env.VITE_REACT_APP_CLIENT_ID;
+    const setProjectId = useSetProjectId();
 
     function selectProject(event:React.MouseEvent<HTMLDivElement, MouseEvent>, project: Project) {
         event.stopPropagation();
-        if(project.id) {
-        axios.get<Project>(`${API_ENDPOINT}/project/${project?.id}`)
-            .then(response => props.setProject(response.data))
-            .catch(err => console.log(err));
-        }
+        setProjectId(project.id);
     }
 
     return (

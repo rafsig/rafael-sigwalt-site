@@ -1,9 +1,9 @@
 import { faCertificate } from "@fortawesome/free-solid-svg-icons";
 import Section from "..";
 import CertificateCard from "./Card";
-import certificates from "./certificates.json";
+
 import styled from "styled-components";
-import Certificate from "../../../models/Certificate";
+import { useCertificateList } from "../../../state/hooks/CertificateHook";
 
 const GaleryContainer = styled.div`
     display: flex;
@@ -12,13 +12,15 @@ const GaleryContainer = styled.div`
     flex-wrap: wrap;
 `
 
-export default function CertificateSection({setCertificate}:{setCertificate:React.Dispatch<React.SetStateAction<Certificate | undefined>>}) {
+export default function CertificateSection() {
+
+    const certificates = useCertificateList();
 
     return (
         <Section id="certificates" title="Certificates" titlePosition="top" icon={faCertificate}>
             <GaleryContainer>
                 {certificates.map(certificate => 
-                    <CertificateCard key={certificate.id} certificate={certificate} setCertificate={setCertificate}/>
+                    <CertificateCard key={certificate.id} certificate={certificate}/>
                 )}
             </GaleryContainer>      
         </Section>

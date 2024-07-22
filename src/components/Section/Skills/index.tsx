@@ -2,9 +2,8 @@ import styled from "styled-components";
 import Section from ".."
 import HighlightsList from "../../HighlightsList";
 import { faCode } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
-import Skill from "../../../models/Skill";
-import axios from "axios";
+import { useSkillList } from "../../../state/hooks/SkillHook";
+
 
 const SkillsContainer = styled.div`
     display: flex;
@@ -17,15 +16,7 @@ const SkillsContainer = styled.div`
 
 const Skills = () => {
 
-    const API_ENDPOINT = import.meta.env.VITE_REACT_APP_CLIENT_ID;
-
-    const [skills, setSkills] = useState<Skill[]>([]);
-
-    useEffect(() => {
-        axios.get<Skill[]>(`${API_ENDPOINT}/skill`)
-            .then(response => setSkills(response.data))
-            .catch(err => console.log(err));
-    },[])
+    const skills = useSkillList();
 
     return(
     <Section id="Skills" title="Skills" titlePosition="right" icon={faCode}>
