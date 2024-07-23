@@ -7,6 +7,7 @@ import { disabledColor, specialFontColor } from "../../GlobalStyle/styleVariable
 
 import { useState } from "react";
 import { useWorkExperienceList } from "../../../state/hooks/WorkExperienceHook";
+import { buttonClick } from "../../../ga4/util";
 
 
 interface ItemProp {
@@ -57,12 +58,14 @@ const WorkExperienceSection = () => {
 
     function goToNextExperience() {
         if(experienceIndex < experienceList.length - 1) {
+            buttonClick("Next Work Experinece")
             setExperienceIndex(experienceIndex + 1);
         }
     }
 
     function goToPreviousExperience() {
         if(experienceIndex > 0) {
+            buttonClick("Previous Work Experinece")
             setExperienceIndex(experienceIndex - 1);
         }
     }

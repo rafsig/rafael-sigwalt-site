@@ -23,3 +23,11 @@ export function cardClick(label:string, caller:string){
         label:label,
     })
 }
+
+export function buttonClick(label:string){
+    ReactGA.event({
+        category:"Button Click",
+        action:"Click",
+        label,
+    })
+}
