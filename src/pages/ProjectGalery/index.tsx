@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import Galery from "../../components/Section/Galery";
 import ProjectModal from "../../components/Section/Galery/ProjectModal";
 import { pageVisit } from "../../ga4/util";
@@ -11,8 +11,12 @@ export default function ProjectGalery() {
 
     return (
     <>
-        <Galery></Galery>
-        <ProjectModal/>
+        <Suspense fallback="">
+            <Galery></Galery>
+        </Suspense>
+        <Suspense fallback="">
+            <ProjectModal/>
+        </Suspense>
     </>
     )
 

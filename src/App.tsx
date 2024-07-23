@@ -8,7 +8,6 @@ import ProjectGalery from "./pages/ProjectGalery";
 import EducationPage from "./pages/Education";
 import NotFound from "./pages/NotFound";
 import { RecoilRoot } from "recoil";
-import { Suspense } from "react";
 import ReactGA from 'react-ga4';
 
 
@@ -36,7 +35,6 @@ function App() {
 
   return (
     <RecoilRoot>
-      <Suspense fallback="">
         <Router>
           <GlobalStyle></GlobalStyle>
           <Header></Header>
@@ -54,7 +52,6 @@ function App() {
             <EndBar/>
           </MainStyled>
         </Router>
-      </Suspense>
     </RecoilRoot>
   )
 }
