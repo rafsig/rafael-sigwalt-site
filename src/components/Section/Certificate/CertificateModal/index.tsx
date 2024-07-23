@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Modal from "../../../Modal";
 import { CallToActionLink } from "../../../CallToAction";
 import { useCertificateState } from "../../../../state/hooks/CertificateHook";
+import { handleAnchorClick } from "../../../../ga4/util";
 
 const CardImage = styled.img`
     width: 100%;
@@ -49,7 +50,7 @@ export default function CertificateModal() {
         <Modal entity={certificate} callback={setCertificate}>
             <CardImage src={certificate?.imagePath}></CardImage>
             <Content>
-                <CallToActionLink href={certificate?.url} target="_blank" rel="no_referrer">View Certificate </CallToActionLink>
+                <CallToActionLink href={certificate?.url} onClick={() => handleAnchorClick(certificate!.url)} target="_blank" rel="no_referrer">View Certificate </CallToActionLink>
                 <ContentTitle>Content</ContentTitle>
                 <OutcomesList>
                 {certificate?.outcomes.map((outcome, index) => <li key={index}>{outcome}</li>)}

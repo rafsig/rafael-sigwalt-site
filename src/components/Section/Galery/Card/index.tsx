@@ -4,6 +4,7 @@ import { SkillList, Skill } from "../../../Skills";
 import Project from "../../../../models/Project";
 import Card from "../../../Card";
 import { useSetProjectId } from "../../../../state/hooks/ProjectHook";
+import { cardClick, handleAnchorClick } from "../../../../ga4/util";
 
 const CardImageStyled = styled.img`
     width:100%;
@@ -42,6 +43,7 @@ const ProjectCard = (props:GaleryCardProps) => {
 
     function selectProject(event:React.MouseEvent<HTMLDivElement, MouseEvent>, project: Project) {
         event.stopPropagation();
+        cardClick(`${project.id} - ${project.title}`, "Project Card");
         setProjectId(project.id);
     }
 
@@ -60,7 +62,7 @@ const ProjectCard = (props:GaleryCardProps) => {
                             href={props.project.git} 
                             target="_blank" 
                             rel="noreferrer" 
-                            onClick={event => event.stopPropagation()}>GitHub</a> : <></>
+                            onClick={event => {event.stopPropagation(); handleAnchorClick(props.project.git!)}}>GitHub</a> : <></>
                 }
                 
             </CardContentCotainer>

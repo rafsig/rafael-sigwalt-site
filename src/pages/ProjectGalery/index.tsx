@@ -1,16 +1,12 @@
 import { useEffect } from "react";
 import Galery from "../../components/Section/Galery";
 import ProjectModal from "../../components/Section/Galery/ProjectModal";
-import ReactGA from 'react-ga4';
+import { pageVisit } from "../../ga4/util";
 
 export default function ProjectGalery() {
 
     useEffect(() => {
-        ReactGA.send({
-            hitType:"pageview",
-            page:"Project Galery",
-            title:"Project Galery"
-        });
+        pageVisit("Project Galery");
     });
 
     return (
