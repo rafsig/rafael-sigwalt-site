@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Skill, SkillList } from "../../../Skills";
 import Modal from "../../../Modal";
 import { useProejct, useSetProjectId } from "../../../../state/hooks/ProjectHook";
+import { handleAnchorClick } from "../../../../ga4/util";
 
 const ProjectImage = styled.img`
 display: block;
@@ -45,7 +46,7 @@ export default function ProjectModal() {
                 project?.git ?
                 <>
                     <h4>Links</h4>
-                    <a href={project.git}>GitHub</a>
+                    <a href={project.git} onClick={() => handleAnchorClick(project.git!)} target="_blank" rel="noreferrer">GitHub</a>
                 </>
                 : <></>
             }
