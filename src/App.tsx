@@ -9,6 +9,7 @@ import EducationPage from "./pages/Education";
 import NotFound from "./pages/NotFound";
 import { RecoilRoot } from "recoil";
 import { Suspense } from "react";
+import ReactGA from 'react-ga';
 
 const ContentContainer = styled.div`
   max-width:1400px;
@@ -30,9 +31,11 @@ const EndBar = styled.div`
 
 function App() {
 
+  ReactGA.initialize('G-PWVWVME0J7');
+
   return (
     <RecoilRoot>
-      <Suspense fallback="Hello World">
+      <Suspense fallback="">
         <Router>
           <GlobalStyle></GlobalStyle>
           <Header></Header>
