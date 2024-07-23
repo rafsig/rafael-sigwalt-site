@@ -1,8 +1,14 @@
 import {  useNavigate  } from "react-router-dom";
 import { CallToAction } from "../../components/CallToAction";
 import styled from "styled-components";
+import ReactGA from 'react-ga';
+import { useEffect } from "react";
 
 export default function NotFound() {
+
+    useEffect(() => {
+        ReactGA.pageview(window.location.pathname + window.location.search);
+    });
 
     const navigate = useNavigate();
 
