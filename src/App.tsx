@@ -11,6 +11,7 @@ import { RecoilRoot } from "recoil";
 import { Suspense } from "react";
 import ReactGA from 'react-ga4';
 
+
 const ContentContainer = styled.div`
   max-width:1400px;
   width: 100%;
