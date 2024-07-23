@@ -26,8 +26,8 @@ const CardDivStyled = styled.div`
 
 export default function Card(props:CardProps) {
     return (
-        <CardDivStyled onClick={event => props.callBack(event, props.selection)}>
-            {props.children}
+        <CardDivStyled onClick={() => props.callBack(props.selection)}>
+                {props.children} 
         </CardDivStyled>);
 
 

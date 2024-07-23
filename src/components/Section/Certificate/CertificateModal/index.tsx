@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Modal from "../../../Modal";
 import { CallToActionLink } from "../../../CallToAction";
-import { useCertificateState } from "../../../../state/hooks/CertificateHook";
+import {  useCertificate, useSetCertificateId } from "../../../../state/hooks/CertificateHook";
 import { handleAnchorClick } from "../../../../ga4/util";
 
 const CardImage = styled.img`
@@ -44,10 +44,11 @@ const OutcomesList = styled.ul`
 
 export default function CertificateModal() {
 
-    const [certificate, setCertificate] = useCertificateState();
+    const certificate = useCertificate();
+    const setCertificateId = useSetCertificateId();
 
     return (
-        <Modal entity={certificate} callback={setCertificate}>
+        <Modal entity={certificate} callback={setCertificateId}>
             <CardImage src={certificate?.imagePath}></CardImage>
             <Content>
                 <CallToActionLink href={certificate?.url} onClick={() => handleAnchorClick(certificate!.url)} target="_blank" rel="no_referrer">View Certificate </CallToActionLink>

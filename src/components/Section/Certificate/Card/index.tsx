@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Certificate from "../../../../models/Certificate";
 import Card from "../../../Card";
-import { useSetCertificate } from "../../../../state/hooks/CertificateHook";
+import { useSetCertificateId } from "../../../../state/hooks/CertificateHook";
 import { cardClick } from "../../../../ga4/util";
 
 const CardImage = styled.img`
@@ -34,14 +34,11 @@ const LeftCell = styled.td`
 
 export default function CertificateCard({certificate}:{certificate:Certificate,}) {
 
-    const setCertificate = useSetCertificate();
+    const setCertificate = useSetCertificateId();
 
-    function selectCertificate(event:React.MouseEvent<HTMLDivElement, MouseEvent>, certificate:Certificate) {
-        event.stopPropagation();
+    function selectCertificate(certificate:Certificate) {
         cardClick(`${certificate.id} - ${certificate.title}`, "Certificate Card");
-        if(certificate.id) {
-            setCertificate(certificate);
-        }
+        setCertificate(certificate.id);
     }
 
     return (

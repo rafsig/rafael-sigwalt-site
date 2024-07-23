@@ -41,8 +41,7 @@ const ProjectCard = (props:GaleryCardProps) => {
 
     const setProjectId = useSetProjectId();
 
-    function selectProject(event:React.MouseEvent<HTMLDivElement, MouseEvent>, project: Project) {
-        event.stopPropagation();
+    function selectProject(project: Project) {
         cardClick(`${project.id} - ${project.title}`, "Project Card");
         setProjectId(project.id);
     }
