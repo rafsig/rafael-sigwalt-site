@@ -8,9 +8,9 @@ import { projectAsync, projectListAsync } from "./selectors/ProjectAsync";
 import WorkExperience from "../models/WorkExperience";
 import { workExperienceListAsync } from "./selectors/WorkExperienceAsync";
 import Graduation from "../models/Graduation";
-import graduationList from "../components/Section/Education/graduations.json"
 import Certificate from "../models/Certificate";
 import { certificateAsync, certificateListAsync } from "./selectors/CertificateAsync";
+import { graduationListAsync } from "./selectors/GraduationAsync";
 
 export const aboutState = atom<About>(
     {
@@ -43,7 +43,7 @@ export const workExperienceListState = atom<WorkExperience[]>(
 export const graduationListState = atom<Graduation[]>(
     {
         key:'graduationListState',
-        default: graduationList
+        default: graduationListAsync
     }
 )
 
