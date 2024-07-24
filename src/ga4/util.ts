@@ -31,3 +31,10 @@ export function buttonClick(label:string){
         label,
     })
 }
+
+export function initialize() {
+    if(import.meta.env.PROD){
+        ReactGA.initialize('G-PWVWVME0J7');
+        
+    }
+}
