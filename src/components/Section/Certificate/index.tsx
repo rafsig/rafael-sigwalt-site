@@ -10,6 +10,9 @@ const GaleryContainer = styled.div`
     gap:40px;
     padding:40px;
     flex-wrap: wrap;
+    @media (max-width: 1000px) {
+        justify-content: center;
+    }
 `
 
 export default function CertificateSection() {

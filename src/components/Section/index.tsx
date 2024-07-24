@@ -85,7 +85,8 @@ const SectionContent = styled.div<SectionProp>`
         margin: auto 30px;
     }
     @media(max-width: 1000px) or (max-height:890px)  {
-        margin: 30px 30px;
+        width: calc(100% - 20px);
+        margin: 30px 10px;
     }
  `
 
