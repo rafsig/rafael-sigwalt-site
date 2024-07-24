@@ -8,7 +8,7 @@ import ProjectGalery from "./pages/ProjectGalery";
 import EducationPage from "./pages/Education";
 import NotFound from "./pages/NotFound";
 import { RecoilRoot } from "recoil";
-import ReactGA from 'react-ga4';
+import { initialize } from "./ga4/util";
 
 
 const ContentContainer = styled.div`
@@ -31,7 +31,7 @@ const EndBar = styled.div`
 
 function App() {
 
-  ReactGA.initialize('G-PWVWVME0J7');
+  initialize();
 
   return (
     <RecoilRoot>
