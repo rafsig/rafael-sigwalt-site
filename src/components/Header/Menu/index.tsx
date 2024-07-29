@@ -76,7 +76,7 @@ const Menu = () => {
         }
     ]
     
-    const [menuVisibility, setMenuVisibility] = useState("hidden");
+    const [menuVisibility, setMenuVisibility] = useState("collapse");
     
     return (
     <NavStyled>
