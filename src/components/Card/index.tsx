@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import CardProps from "../../models/props/CardProps";
+import { CallToAction } from "../CallToAction";
 
 const CardDivStyled = styled.div`
     width:300px;
@@ -24,10 +25,24 @@ const CardDivStyled = styled.div`
     }
 `
 
+const CallToActionContainer = styled.div`
+    width:100%;
+    display: flex;
+    justify-content: center;
+`
+
+const CustomCallToAction = styled(CallToAction)`
+    width: 80%;
+    margin: 10px auto;
+`
+
 export default function Card(props:CardProps) {
     return (
         <CardDivStyled onClick={() => props.callBack(props.selection)}>
-                {props.children} 
+                {props.children}
+            <CallToActionContainer>
+                <CustomCallToAction onClick={() => props.callBack(props.selection)}>View More</CustomCallToAction>
+            </CallToActionContainer>
         </CardDivStyled>);
 
 

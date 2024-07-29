@@ -14,6 +14,7 @@ export const CallToAction = styled.button`
     text-decoration: none;
     &:hover{
         box-shadow: 0 2px 4px 0 ${specialFontColor}d0;
+        cursor: pointer;
     }
 `
 
@@ -30,5 +31,6 @@ export const CallToActionLink = styled.a`
     text-decoration: none;
     &:hover{
         box-shadow: 0 2px 4px 0 ${specialFontColor}d0;
+        cursor: pointer;
     }
 `
