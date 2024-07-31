@@ -30,7 +30,7 @@ const HighlightText = styled.p`
       }
 `;
 
-const HighlightsList = (props:HighlightListProps) => {
+export default function HighlightsList (props:HighlightListProps) {
     return(
     <HighlightsListStyled>
         {
@@ -45,5 +45,3 @@ const HighlightsList = (props:HighlightListProps) => {
                     </HighlightItemStyled> ))}
     </HighlightsListStyled>);
 }
-
-export default HighlightsList;

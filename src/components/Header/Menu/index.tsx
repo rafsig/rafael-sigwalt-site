@@ -59,7 +59,7 @@ const Overlay = styled.div<MenuProps>`
     visibility: ${props => props.$visibility === "visible"? "visible" : "hidden"};
 `
 
-const Menu = () => {
+export default function Menu() {
 
     const routes = [
         {
@@ -98,5 +98,3 @@ const Menu = () => {
     }
    
 }
-
-export default Menu;

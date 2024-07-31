@@ -35,7 +35,7 @@ const TitleStyled = styled.h1`
     }
 `
 
-const Header = () => {
+export default function Header() {
 
     return (
     <HeaderStyled>
@@ -46,5 +46,3 @@ const Header = () => {
     </HeaderStyled>);
 
 }
-
-export default Header;

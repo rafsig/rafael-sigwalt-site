@@ -40,7 +40,8 @@ const ColumnContainer = styled.div`
 `
 
 
-const WorkExperienceCard = (props:WorkExperience) => {
+export default function WorkExperienceCard(props:WorkExperience) {
+    
     return (
     <WorkExperienceDiv>
         <ColumnContainer>
@@ -50,5 +51,3 @@ const WorkExperienceCard = (props:WorkExperience) => {
         <ColumnContainer> <HighlightsList highlights = {props.highlights}/> </ColumnContainer>
     </WorkExperienceDiv>);
 }
-
-export default WorkExperienceCard;

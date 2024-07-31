@@ -17,7 +17,7 @@ const SkillsContainer = styled.div`
 
 `
 
-const Skills = () => {
+export default function Skills() {
 
     const skills = useSkillList();
 
@@ -28,5 +28,3 @@ const Skills = () => {
         </SkillsContainer>
     </Section>)
 }
-
-export default Skills;

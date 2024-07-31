@@ -50,7 +50,7 @@ const CloseButton = styled.button`
     background-color: transparent;
 `
 
-const Modal = ({entity, callback, children}:{entity?:any, callback:Function, children:ReactNode}) => {
+export default function Modal ({entity, callback, children}:{entity?:any, callback:Function, children:ReactNode}) {
 
     return (
     <>
@@ -71,7 +71,3 @@ const Modal = ({entity, callback, children}:{entity?:any, callback:Function, chi
 
     )
 }
-
-
-
-export default Modal;

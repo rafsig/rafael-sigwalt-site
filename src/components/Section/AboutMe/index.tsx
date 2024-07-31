@@ -19,7 +19,7 @@ const DescriptionParagraph = styled.p`
 `
 
 
-const AboutMe = () => {
+export default function AboutMe() {
 
     const about = useAbout();
 
@@ -40,5 +40,3 @@ const AboutMe = () => {
         </AboutMeContainer>
     </Section>);
 };
-
-export default AboutMe;

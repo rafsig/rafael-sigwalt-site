@@ -29,7 +29,7 @@ const EndBar = styled.div`
   height:25px;
 `  
 
-function App() {
+export default function App() {
 
   initialize();
 
@@ -55,5 +55,3 @@ function App() {
     </RecoilRoot>
   )
 }
-
-export default App

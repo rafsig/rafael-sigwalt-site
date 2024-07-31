@@ -23,7 +23,7 @@ const ListItemStyled = styled.li`
     }
 `;
 
-const MenuItem = (props:MenuItemProps) => {
+export default function MenuItem(props:MenuItemProps) {
     return(
         <ListItemStyled>
             <Link to={props.target} onClick={() => props.onSelectSection("collapse")}>
@@ -32,5 +32,3 @@ const MenuItem = (props:MenuItemProps) => {
         </ListItemStyled>
     );
 }
-
-export default MenuItem;

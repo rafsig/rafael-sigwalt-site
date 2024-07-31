@@ -19,7 +19,7 @@ const GaleryDivStyled = styled.div`
 
 
 
-const Galery = () => {
+export default function Galery() {
 
     const projects = useProjectList();
 
@@ -36,6 +36,3 @@ const Galery = () => {
         </Section>
     );
 }
-
-
-export default Galery;

@@ -48,10 +48,8 @@ const Item = styled.div<ItemProp>`
     }
 `
 
-const WorkExperienceSection = () => {
+export default function WorkExperienceSection() {
 
-
-    
     const [experienceIndex, setExperienceIndex] = useState(0);
 
     const experienceList = useWorkExperienceList();
@@ -91,5 +89,3 @@ const WorkExperienceSection = () => {
         </Section>
     );
 }
-
-export default WorkExperienceSection;

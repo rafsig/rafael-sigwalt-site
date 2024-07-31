@@ -99,7 +99,7 @@ const IconContainer = styled.div<SectionProp>`
     }
 `
 
-const Section = (props:SectionProps) => {
+export default function Section(props:SectionProps) {
     return (
         <SectionStyled id={props.id} $titlePosition={props.titlePosition}>
             <TitleDiv $titlePosition={props.titlePosition}>
@@ -117,5 +117,3 @@ const Section = (props:SectionProps) => {
             
         </SectionStyled>);
 }
-
-export default Section;
