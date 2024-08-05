@@ -24,7 +24,7 @@ export default function AboutMe() {
     const about = useAbout();
 
     return(
-    <Section id="AboutMe" title="About Me" titlePosition="left" imagePath="/images/profile-picture.jpg">
+    <Section id="AboutMe" title="About Me" titlePosition="left" imagePath="/images/profile-picture.png">
         <AboutMeContainer>
             <DescriptionParagraph>
                 {about?.professionalDescription}
