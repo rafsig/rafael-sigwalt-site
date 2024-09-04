@@ -4,14 +4,20 @@ import axios from "axios";
 
 const API_ENDPOINT = import.meta.env.VITE_REACT_APP_CLIENT_ID;
 
-export const skillListAsync = selector<Skill[]>({
+export const skillListAsync = selector<string[]>({
     key:'skillListAsync',
     get: async () => {
-        var skillList:Skill[] = [];
-        await axios
-            .get<Skill[]>(`${API_ENDPOINT}/skill`)
-            .then(response => skillList = response.data)
-            .catch(err => console.log(err));
-        return skillList;
+        let skills;
+
+        try{ 
+            skills = await axios
+                        .get<Skill>(`${API_ENDPOINT}/skill`);
+            return skills.data.skills;
+            
+
+        } catch(ex){
+            console.log(ex);
+        }
+        return [];
     }
 })

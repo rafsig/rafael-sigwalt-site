@@ -1,8 +1,8 @@
 export default interface Certificate{
     id:number,
-    imagePath:string,
+    imageUrl:string,
     title:string,
-    concluded:string,
+    dateFinished:Date,
     institution:string,
     url:string,
     outcomes:string[]

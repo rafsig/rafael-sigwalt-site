@@ -1,7 +1,6 @@
 import { atom } from "recoil";
 import About from "../models/About";
 import { aboutAsync } from "./selectors/AboutAsync";
-import Skill from "../models/Skill";
 import { skillListAsync } from "./selectors/SkillAsync";
 import Project from "../models/Project";
 import { projectAsync, projectListAsync } from "./selectors/ProjectAsync";
@@ -19,7 +18,7 @@ export const aboutState = atom<About>(
     }
 )
 
-export const skillListState = atom<Skill[]>(
+export const skillListState = atom<string[]>(
     {
         key:'skillListState',
         default: skillListAsync

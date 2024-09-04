@@ -49,12 +49,12 @@ export default function CertificateModal() {
 
     return (
         <Modal entity={certificate} callback={setCertificateId}>
-            <CardImage src={certificate?.imagePath}></CardImage>
+            <CardImage src={certificate?.imageUrl}></CardImage>
             <Content>
                 <CallToActionLink href={certificate?.url} onClick={() => handleAnchorClick(certificate!.url)} target="_blank" rel="no_referrer">View Certificate </CallToActionLink>
                 <ContentTitle>Content</ContentTitle>
                 <OutcomesList>
-                {certificate?.outcomes.map((outcome, index) => <li key={index}>{outcome}</li>)}
+                {certificate?.outcomes?.map((outcome, index) => <li key={index}>{outcome}</li>)}
                 </OutcomesList>
             </Content>   
         </Modal>

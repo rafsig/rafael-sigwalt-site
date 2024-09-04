@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import WorkExperience from "../../../../models/WorkExperience";
 import HighlightsList from "../../../HighlightsList";
+import { formatMonthYear } from "../../../../utils/FormatDate";
 
 const WorkExperienceDiv = styled.div`
     background-color: #fff;
@@ -46,7 +47,7 @@ export default function WorkExperienceCard(props:WorkExperience) {
     <WorkExperienceDiv>
         <ColumnContainer>
         <WorkExperienceTitle>{`${props.role} at ${props.companyName}`}</WorkExperienceTitle>
-        <WorkExperienceDates>{`from ${props.dateStart} to ${props.dateEnd}`}</WorkExperienceDates>
+        <WorkExperienceDates>{`from ${formatMonthYear(props.dateStart)} to ${formatMonthYear(props.dateEnd)}`}</WorkExperienceDates>
         {props.description}</ColumnContainer> 
         <ColumnContainer> <HighlightsList highlights = {props.highlights}/> </ColumnContainer>
     </WorkExperienceDiv>);

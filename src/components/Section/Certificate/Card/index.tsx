@@ -3,6 +3,7 @@ import Certificate from "../../../../models/Certificate";
 import Card from "../../../Card";
 import { useSetCertificateId } from "../../../../state/hooks/CertificateHook";
 import { cardClick } from "../../../../ga4/util";
+import { formatMonthYear } from "../../../../utils/FormatDate";
 
 const CardImage = styled.img`
     width: 100%;
@@ -43,7 +44,7 @@ export default function CertificateCard({certificate}:{certificate:Certificate,}
 
     return (
         <Card callBack={selectCertificate} selection={certificate}>
-            <CardImage src={certificate.imagePath}/>
+            <CardImage src={certificate.imageUrl}/>
             <Table>
                 <tbody>
                     <tr>
@@ -58,7 +59,7 @@ export default function CertificateCard({certificate}:{certificate:Certificate,}
                             Concluded
                         </td>
                         <LeftCell>
-                            {certificate.concluded}
+                            {formatMonthYear(certificate.dateFinished)}
                         </LeftCell>
                     </tr>
                     <tr>

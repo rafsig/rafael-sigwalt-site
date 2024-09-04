@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import Graduation from "../../../../models/Graduation"
+import { GraduationType } from "../../../../models/GraduationType"
+import { formatMonthYear } from "../../../../utils/FormatDate"
 
 
 const TitleCell = styled.td`
@@ -17,8 +19,8 @@ export default function GraduationSection({graduation}:{graduation:Graduation}) 
         <table>
             <tbody>
                 <tr>
-                    <TitleCell>{graduation.degree} in {graduation.programName}</TitleCell>
-                    <RightCell>{graduation.dateConcluded}</RightCell>
+                    <TitleCell>{GraduationType[graduation.degree as keyof typeof GraduationType]} in {graduation.programName}</TitleCell>
+                    <RightCell>{formatMonthYear(graduation.dateFinished)}</RightCell>
                 </tr>
                 <tr>
                     <td>{graduation.institution}</td>

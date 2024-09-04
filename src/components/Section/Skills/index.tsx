@@ -24,7 +24,7 @@ export default function Skills() {
     return(
     <Section id="Skills" title="Skills" titlePosition="right" icon={faCode}>
         <SkillsContainer>
-            <HighlightsList highlights={skills.map(skill => skill.description)}></HighlightsList>
+            <HighlightsList highlights={skills.map(skill => skill)}></HighlightsList>
         </SkillsContainer>
     </Section>)
 }
