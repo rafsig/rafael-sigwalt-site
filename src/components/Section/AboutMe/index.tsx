@@ -24,7 +24,7 @@ export default function AboutMe() {
     const about = useAbout();
 
     return(
-    <Section id="AboutMe" title="About Me" titlePosition="left" imagePath="/images/profile-picture.png">
+    <Section id="AboutMe" title="About Me" titlePosition="left" imageUrl="https://raf-personal-website-bucket.s3.ca-central-1.amazonaws.com/profile-picture.png">
         <AboutMeContainer>
             <DescriptionParagraph>
                 {about?.professionalDescription}

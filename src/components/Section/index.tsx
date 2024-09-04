@@ -104,8 +104,8 @@ export default function Section(props:SectionProps) {
         <SectionStyled id={props.id} $titlePosition={props.titlePosition}>
             <TitleDiv $titlePosition={props.titlePosition}>
                 <SectionTitle $titlePosition={props.titlePosition}>&nbsp;{props.title}&nbsp;</SectionTitle>
-                {props.imagePath &&
-                    <SectionImage $titlePosition={props.titlePosition} src={props.imagePath}/>
+                {props.imageUrl &&
+                    <SectionImage $titlePosition={props.titlePosition} src={props.imageUrl}/>
                 }
                 { props.icon && 
                 <IconContainer $titlePosition={props.titlePosition}>

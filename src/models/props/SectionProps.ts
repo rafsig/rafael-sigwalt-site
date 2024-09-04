@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 
 export default interface SectionProps {
     title:string,
-    imagePath?:string,
+    imageUrl?:string,
     icon?:IconDefinition,
     titlePosition:"right" | "left" | "top",
     id:string,
