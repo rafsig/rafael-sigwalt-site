@@ -8,27 +8,26 @@ const API_ENDPOINT = import.meta.env.VITE_REACT_APP_CLIENT_ID;
 export const certificateAsync = selector<Certificate | undefined>({
     key:'certificateAsync',
     get: async ({get}) => {
-        const projectId = get(selectedCertificateIdState);
-        let project:Certificate | undefined = undefined;
-        if(projectId){
+        const certificateId = get(selectedCertificateIdState);
+        let certificate:Certificate | undefined = undefined;
+        if(certificateId){
             await axios
-                .get<Certificate>(`${API_ENDPOINT}/certificate/${projectId}`)
-                .then(response => project = response.data)
+                .get<Certificate>(`${API_ENDPOINT}/certificate/${certificateId}`)
+                .then(response => certificate = response.data)
                 .catch(err => console.log(err));
         }
-        return project;
+        return certificate;
     }
 })
 
 export const certificateListAsync = selector<Certificate[]>({
     key:'certificateListAsync',
     get: async () => {
-        let projectList:Certificate[] = [];
+        let certificateList:Certificate[] = [];
         await axios
             .get<Certificate[]>(`${API_ENDPOINT}/certificate`)
-            .then(response => projectList = response.data)
+            .then(response => certificateList = response.data)
             .catch(err => console.log(err));
-            let sortedList = projectList.sort((a, b) => b.dateFinished.valueOf() - a.dateFinished.valueOf() )
-        return sortedList;
+        return certificateList;
     }
 })

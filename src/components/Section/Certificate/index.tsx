@@ -22,7 +22,7 @@ export default function CertificateSection() {
     return (
         <Section id="certificates" title="Certificates" titlePosition="top" icon={faCertificate}>
             <GaleryContainer>
-                {certificates.map(certificate => 
+                {certificates.sort((a,b) => b.dateFinished.valueOf() - a.dateFinished.valueOf()).map(certificate => 
                     <CertificateCard key={certificate.id} certificate={certificate}/>
                 )}
             </GaleryContainer>      
