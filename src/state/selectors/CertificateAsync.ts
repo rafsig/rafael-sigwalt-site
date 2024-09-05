@@ -35,8 +35,6 @@ export const certificateListAsync = selector<Certificate[]>({
                 })
             })
             .catch(err => console.log(err));
-        console.log(certificateList);
-        console.log(certificateList[0].dateFinished);
         certificateList.sort((a,b) => b.dateFinished.valueOf() - a.dateFinished.valueOf());
         return certificateList;
     }
