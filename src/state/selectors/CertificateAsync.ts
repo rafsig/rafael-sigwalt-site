@@ -26,7 +26,14 @@ export const certificateListAsync = selector<Certificate[]>({
         let certificateList:Certificate[] = [];
         await axios
             .get<Certificate[]>(`${API_ENDPOINT}/certificate`)
-            .then(response => certificateList = response.data)
+            .then(response => {
+                certificateList = response.data.map(certificateOriginal => {let certificate : Certificate = {
+                    ...certificateOriginal,
+                    dateFinished: new Date(certificateOriginal.dateFinished)
+                };
+                return certificate;
+                })
+            })
             .catch(err => console.log(err));
         console.log(certificateList);
         console.log(certificateList[0].dateFinished);
