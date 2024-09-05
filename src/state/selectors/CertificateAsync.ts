@@ -28,6 +28,7 @@ export const certificateListAsync = selector<Certificate[]>({
             .get<Certificate[]>(`${API_ENDPOINT}/certificate`)
             .then(response => projectList = response.data)
             .catch(err => console.log(err));
+            projectList.sort((a, b) => b.dateFinished.valueOf() - a.dateFinished.valueOf() )
         return projectList;
     }
 })
