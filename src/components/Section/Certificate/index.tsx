@@ -36,19 +36,20 @@ export default function CertificateSection() {
 
     useEffect(() => {
         addToPagedCertificates();
-    }, [certificates]);
+    });
 
     const [numberOfCertToDisplay, setNumberCertToDisplay] = useState(12);
 
     function addToPagedCertificates() {
-        console.log(numberOfCertToDisplay);
-        console.log(certificates);
-        setPagedCertificates(certificates.slice(0, numberOfCertToDisplay));
-        if(certificates.length - numberOfCertToDisplay >= 12){
-            setNumberCertToDisplay(numberOfCertToDisplay + 12);
-        } else {
-            setNumberCertToDisplay(certificates.length);
+        if(numberOfCertToDisplay <= certificates.length)
+            setPagedCertificates(certificates.slice(0, numberOfCertToDisplay));
+        else {
+            setPagedCertificates(certificates);
         }
+    }
+
+    function updateNumberCertToDisplay() {
+        setNumberCertToDisplay(numberOfCertToDisplay + 12);
     }
 
     return (
@@ -63,7 +64,11 @@ export default function CertificateSection() {
                 numberOfCertToDisplay === certificates.length ? 
                 <></> :
                 <ButtonContainer>
-                    <CustomCallToAction onClick={() => addToPagedCertificates()}>Load More</CustomCallToAction>
+                    <CustomCallToAction onClick={() =>
+                        {
+                            updateNumberCertToDisplay();
+                            addToPagedCertificates();
+                        }}>Load More</CustomCallToAction>
                 </ButtonContainer>
             }   
         </Section>
