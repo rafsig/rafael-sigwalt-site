@@ -33,7 +33,8 @@ const CallToActionContainer = styled.div`
 `
 
 const CustomCallToAction = styled(CallToAction)`
-    width: 80%;
+    width: 60%;
+    padding:10px 10px;
     margin: 10px auto;
     background-color: transparent;
     border: 2px solid ${specialFontColor};
