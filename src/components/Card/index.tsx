@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import CardProps from "../../models/props/CardProps";
 import { CallToAction } from "../CallToAction";
+import { specialFontColor } from "../GlobalStyle/styleVariables";
 
 const CardDivStyled = styled.div`
     width:300px;
@@ -34,6 +35,8 @@ const CallToActionContainer = styled.div`
 const CustomCallToAction = styled(CallToAction)`
     width: 80%;
     margin: 10px auto;
+    background-color: transparent;
+    border: 2px solid ${specialFontColor};
 `
 
 export default function Card(props:CardProps) {
