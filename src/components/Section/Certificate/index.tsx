@@ -36,19 +36,19 @@ export default function CertificateSection() {
 
     useEffect(() => {
         addToPagedCertificates();
-    }, [certificates]);
+    });
 
     const [numberOfCertToDisplay, setNumberCertToDisplay] = useState(12);
 
     function addToPagedCertificates() {
+        console.log(numberOfCertToDisplay);
+        console.log(certificates);
+        setPagedCertificates(certificates.slice(0, numberOfCertToDisplay));
         if(certificates.length - numberOfCertToDisplay >= 12){
             setNumberCertToDisplay(numberOfCertToDisplay + 12);
         } else {
             setNumberCertToDisplay(certificates.length);
         }
-        console.log(numberOfCertToDisplay);
-        console.log(certificates);
-        setPagedCertificates(certificates.slice(0, numberOfCertToDisplay));
     }
 
     return (
