@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Menu from "./Menu";
+import { SocialIcon } from "react-social-icons";
+import { useAbout } from "../../state/hooks/AboutHook";
 
 
 const HeaderStyled = styled.header`
@@ -34,13 +36,38 @@ const TitleStyled = styled.h1`
         font-size:2.5em
     }
 `
+const Container = styled.div`
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`
+
+const SocialMediaContainer = styled.div`
+    margin-right:50px;
+    margin-top:20px;
+`
+
+const SocialIconCustom = styled(SocialIcon)`
+    margin:5px;
+    max-height: 30px;
+    max-width: 30px;
+`
 
 export default function Header() {
+
+    const about = useAbout();
 
     return (
     <HeaderStyled>
         <HeaderContainer>
-            <TitleStyled >Rafael Sigwalt</TitleStyled>
+            <Container>
+                <TitleStyled >Rafael Sigwalt</TitleStyled>
+                <SocialMediaContainer>
+                    <SocialIconCustom target="_blank" rel="noreferrer" url={about.links.github}/>
+                    <SocialIconCustom target="_blank" rel="noreferrer" url={about.links.linkedIn}/>
+                </SocialMediaContainer>
+            </Container>
             <Menu></Menu>
         </HeaderContainer>
     </HeaderStyled>);
