@@ -32,7 +32,7 @@ export default function CertificateSection() {
         addToPagedCertificates();
     }, [certificates]);
 
-    const [numberOfCertToDisplay, setNumberCertToDisplay] = useState(0);
+    const [numberOfCertToDisplay, setNumberCertToDisplay] = useState(12);
 
     function addToPagedCertificates() {
         if(certificates.length - numberOfCertToDisplay >= 12){
@@ -41,8 +41,8 @@ export default function CertificateSection() {
             setNumberCertToDisplay(certificates.length);
         }
         console.log(numberOfCertToDisplay);
-        console.log(certificates.splice(0, numberOfCertToDisplay - 1));
-        setPagedCertificates(certificates.splice(0, numberOfCertToDisplay - 1));
+        console.log(certificates.slice(0, numberOfCertToDisplay));
+        setPagedCertificates(certificates.slice(0, numberOfCertToDisplay));
     }
 
     return (
