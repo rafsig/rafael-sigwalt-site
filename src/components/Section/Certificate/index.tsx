@@ -40,6 +40,8 @@ export default function CertificateSection() {
         } else {
             setNumberCertToDisplay(certificates.length);
         }
+        console.log(numberOfCertToDisplay);
+        console.log(certificates.splice(0, numberOfCertToDisplay - 1));
         setPagedCertificates(certificates.splice(0, numberOfCertToDisplay - 1));
     }
 
