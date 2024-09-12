@@ -36,7 +36,7 @@ export default function CertificateSection() {
 
     useEffect(() => {
         addToPagedCertificates();
-    });
+    }, [certificates]);
 
     const [numberOfCertToDisplay, setNumberCertToDisplay] = useState(12);
 
