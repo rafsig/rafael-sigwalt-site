@@ -37,6 +37,7 @@ const CustomCallToAction = styled(CallToAction)`
     margin: 10px auto;
     background-color: transparent;
     border: 2px solid ${specialFontColor};
+    color:${specialFontColor};
 `
 
 export default function Card(props:CardProps) {

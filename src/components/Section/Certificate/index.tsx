@@ -22,6 +22,12 @@ const CustomCallToAction = styled(CallToAction)`
     margin: 10px auto;
 `
 
+const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+`
+
 export default function CertificateSection() {
 
     const certificates = useCertificateList();
@@ -52,7 +58,14 @@ export default function CertificateSection() {
                     <CertificateCard key={certificate.id} certificate={certificate}/>
                 )}
             </GaleryContainer>
-            <CustomCallToAction onClick={() => addToPagedCertificates()}>Load More</CustomCallToAction>      
+
+            {
+                numberOfCertToDisplay === certificates.length ? 
+                <></> :
+                <ButtonContainer>
+                    <CustomCallToAction onClick={() => addToPagedCertificates()}>Load More</CustomCallToAction>
+                </ButtonContainer>
+            }   
         </Section>
     );
 }
