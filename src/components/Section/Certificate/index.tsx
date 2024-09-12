@@ -61,7 +61,7 @@ export default function CertificateSection() {
             </GaleryContainer>
 
             {
-                numberOfCertToDisplay === certificates.length ? 
+                numberOfCertToDisplay >= certificates.length ? 
                 <></> :
                 <ButtonContainer>
                     <CustomCallToAction onClick={() =>
