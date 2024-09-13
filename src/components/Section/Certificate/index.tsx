@@ -3,11 +3,8 @@ import Section from "..";
 import CertificateCard from "./Card";
 
 import styled from "styled-components";
-import { useCertificateList, useCertificateListState } from "../../../state/hooks/CertificateHook";
-import { useEffect, useState } from "react";
-import Certificate from "../../../models/Certificate";
+import { useCertificateListState } from "../../../state/hooks/CertificateHook";
 import { CallToAction } from "../../CallToAction";
-import { certificateListAsync } from "../../../state/selectors/CertificateAsync";
 import { getCertificates } from "../../../services/certificateService";
 
 const GaleryContainer = styled.div`

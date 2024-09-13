@@ -1,5 +1,3 @@
-import Certificate from "./Certificate";
-
 export default interface Page<T> {
     content:T[],
     pageable:Pageable,
