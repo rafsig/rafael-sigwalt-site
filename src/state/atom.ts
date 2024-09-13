@@ -10,6 +10,7 @@ import Graduation from "../models/Graduation";
 import Certificate from "../models/Certificate";
 import { certificateAsync, certificateListAsync } from "./selectors/CertificateAsync";
 import { graduationListAsync } from "./selectors/GraduationAsync";
+import Page from "../models/Page";
 
 export const aboutState = atom<About>(
     {
@@ -46,7 +47,7 @@ export const graduationListState = atom<Graduation[]>(
     }
 )
 
-export const certificateListState = atom<Certificate[]>(
+export const certificateListState = atom<Page<Certificate>>(
     {
         key:'certificateListState',
         default: certificateListAsync

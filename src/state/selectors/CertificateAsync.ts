@@ -2,6 +2,8 @@ import { selector } from "recoil";
 import Certificate from "../../models/Certificate";
 import axios from "axios";
 import { selectedCertificateIdState } from "../atom";
+import Page from "../../models/Page";
+import { getCertificates } from "../../services/certificateService";
 
 const API_ENDPOINT = import.meta.env.VITE_REACT_APP_CLIENT_ID;
 
@@ -12,7 +14,7 @@ export const certificateAsync = selector<Certificate | undefined>({
         let certificate:Certificate | undefined = undefined;
         if(certificateId){
             await axios
-                .get<Certificate>(`${API_ENDPOINT}/certificate/${certificateId}`)
+                .get<Certificate>(`${API_ENDPOINT}/certificate/${certificateId}?`)
                 .then(response => certificate = response.data)
                 .catch(err => console.log(err));
         }
@@ -20,22 +22,12 @@ export const certificateAsync = selector<Certificate | undefined>({
     }
 })
 
-export const certificateListAsync = selector<Certificate[]>({
+export const certificateListAsync = selector<Page<Certificate>>({
     key:'certificateListAsync',
     get: async () => {
-        let certificateList:Certificate[] = [];
-        await axios
-            .get<Certificate[]>(`${API_ENDPOINT}/certificate`)
-            .then(response => {
-                certificateList = response.data.map(certificateOriginal => {let certificate : Certificate = {
-                    ...certificateOriginal,
-                    dateFinished: new Date(certificateOriginal.dateFinished)
-                };
-                return certificate;
-                })
-            })
-            .catch(err => console.log(err));
-        certificateList.sort((a,b) => b.dateFinished.valueOf() - a.dateFinished.valueOf());
-        return certificateList;
+        let response = await getCertificates(8, 0);
+
+        response.content.forEach(certificate => certificate.dateFinished = new Date(certificate.dateFinished));
+        return response ;
     }
 })

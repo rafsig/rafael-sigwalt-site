@@ -3,10 +3,12 @@ import Section from "..";
 import CertificateCard from "./Card";
 
 import styled from "styled-components";
-import { useCertificateList } from "../../../state/hooks/CertificateHook";
+import { useCertificateList, useCertificateListState } from "../../../state/hooks/CertificateHook";
 import { useEffect, useState } from "react";
 import Certificate from "../../../models/Certificate";
 import { CallToAction } from "../../CallToAction";
+import { certificateListAsync } from "../../../state/selectors/CertificateAsync";
+import { getCertificates } from "../../../services/certificateService";
 
 const GaleryContainer = styled.div`
     display: flex;
@@ -30,47 +32,37 @@ const ButtonContainer = styled.div`
 
 export default function CertificateSection() {
 
-    const certificates = useCertificateList();
+    const [certificates, setCertificates] = useCertificateListState();
 
-    const [pagedCertificates, setPagedCertificates] = useState<Certificate[]>([]);
+    async function addToPagedCertificates() {
+        let newCertificates = await getCertificates(8, certificates.number + 1);
+        console.log(newCertificates);
+        newCertificates.content.forEach(certificate => certificate.dateFinished = new Date(certificate.dateFinished));
 
-    useEffect(() => {
-        addToPagedCertificates();
-    });
+        newCertificates.content = [...certificates.content, ...newCertificates.content];
 
-    const [numberOfCertToDisplay, setNumberCertToDisplay] = useState(12);
+        setCertificates(newCertificates);
 
-    function addToPagedCertificates() {
-        if(numberOfCertToDisplay <= certificates.length)
-            setPagedCertificates(certificates.slice(0, numberOfCertToDisplay));
-        else {
-            setPagedCertificates(certificates);
-        }
-    }
-
-    function updateNumberCertToDisplay() {
-        setNumberCertToDisplay(numberOfCertToDisplay + 12);
     }
 
     return (
         <Section id="certificates" title="Certificates" titlePosition="top" icon={faCertificate}>
             <GaleryContainer>
-                {pagedCertificates.map(certificate => 
+                {certificates.content.map(certificate => 
                     <CertificateCard key={certificate.id} certificate={certificate}/>
                 )}
             </GaleryContainer>
 
             {
-                numberOfCertToDisplay >= certificates.length ? 
-                <></> :
+                !certificates.last &&
                 <ButtonContainer>
                     <CustomCallToAction onClick={() =>
                         {
-                            updateNumberCertToDisplay();
                             addToPagedCertificates();
                         }}>Load More</CustomCallToAction>
                 </ButtonContainer>
-            }   
+            }
+  
         </Section>
     );
 }
