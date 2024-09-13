@@ -33,13 +33,11 @@ export default function CertificateSection() {
 
     async function addToPagedCertificates() {
         let newCertificates = await getCertificates(8, certificates.number + 1);
-        console.log(newCertificates);
-        newCertificates.content.forEach(certificate => certificate.dateFinished = new Date(certificate.dateFinished));
 
+        newCertificates.content.forEach(certificate => certificate.dateFinished = new Date(certificate.dateFinished));
         newCertificates.content = [...certificates.content, ...newCertificates.content];
 
         setCertificates(newCertificates);
-
     }
 
     return (
