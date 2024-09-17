@@ -73,6 +73,10 @@ export default function Menu() {
         {
             label:'Education',
             to:'/education'
+        },
+        {
+            label:'Contact Me',
+            to:'/contactMe'
         }
     ]
     
