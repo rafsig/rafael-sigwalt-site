@@ -31,11 +31,17 @@ const Input = styled.input`
 const TextArea = styled.textarea`
     ${style}
     resize: none;
-
 `
 
-export function TextInput({value, type, placeholder, label, required ,onChange}:{value:string, type:string, placeholder:string, label:string, required?:boolean, onChange:Function}) {
+const ErrorParagraph = styled.p`
+    margin:0;
+    color:darkRed;
+    margin-top:2px;
+`
+
+export function TextInput({value, placeholder, label, required, onChange, type, error}:{value:string, placeholder:string, label:string, required?:boolean, onChange:Function, type:string, error?:string}) { 
     return (
+
     <FieldContainer>
         <Label required={required} htmlFor={label}>{label}</Label>
         <Input 
@@ -45,6 +51,7 @@ export function TextInput({value, type, placeholder, label, required ,onChange}:
             value={value}  
             required={required} 
             onChange={e => onChange(e.target.value)}></Input>
+            {error && <ErrorParagraph>{error}</ErrorParagraph>}
     </FieldContainer>);
 }
 

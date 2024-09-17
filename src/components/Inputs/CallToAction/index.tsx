@@ -15,7 +15,11 @@ export const CallToAction = styled.button`
     &:hover{
         box-shadow: 0 2px 4px 0 ${specialFontColor}d0;
         cursor: pointer;
+    };
+    &:disabled{
+        background-color: gray;
     }
+    
 `
 
 export const CallToActionLink = styled.a`

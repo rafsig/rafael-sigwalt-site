@@ -5,14 +5,16 @@ import { Form } from "../../Inputs/Form";
 import { TextAreaInput, TextInput } from "../../Inputs/Text";
 import { createMessage } from "../../../services/messgageService";
 
-
-
 export default function ContactMe() {
 
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [company, setCompany] = useState("");
     const [message, setMessage] = useState("");
+
+    const [error, setError] = useState<{error:boolean, email?:string}>({error:false});
+
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
     function submitForm(event:FormEvent) {
         event.preventDefault();
@@ -23,6 +25,14 @@ export default function ContactMe() {
         setEmail("");
         setCompany("");
         setMessage("");
+    }
+
+    function validateEmail() {
+        if(!emailPattern.test(email)){
+            setError({error:true, email:"Invalid Email"})
+        } else {
+            setError({error:false})
+        }
     }
 
     return <Section id="contactMe" title="Contact Me" titlePosition="left">
@@ -41,7 +51,8 @@ export default function ContactMe() {
                 type="e-mail"
                 placeholder="Enter your contact e-mail" 
                 value={email} 
-                onChange={setEmail} 
+                onChange={(value:string) => {validateEmail(); setEmail(value);}} 
+                error={error.email}
                 required/>
             <TextInput 
                 label="Company"
@@ -55,7 +66,7 @@ export default function ContactMe() {
                 value={message} 
                 onChange={setMessage} 
                 required/>
-            <CallToAction type="submit">Submit</CallToAction>
+            <CallToAction disabled={error.error} type="submit">Submit</CallToAction>
         </Form>
     </Section>
 }
