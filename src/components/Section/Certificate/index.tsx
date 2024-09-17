@@ -1,11 +1,10 @@
 import { faCertificate } from "@fortawesome/free-solid-svg-icons";
 import Section from "..";
 import CertificateCard from "./Card";
-
 import styled from "styled-components";
 import { useCertificateListState } from "../../../state/hooks/CertificateHook";
-import { CallToAction } from "../../CallToAction";
 import { getCertificates } from "../../../services/certificateService";
+import { CallToAction } from "../../Inputs/CallToAction";
 
 const GaleryContainer = styled.div`
     display: flex;

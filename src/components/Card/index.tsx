@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import CardProps from "../../models/props/CardProps";
-import { CallToAction } from "../CallToAction";
+import { CallToAction } from "../Inputs/CallToAction";
 import { specialFontColor } from "../GlobalStyle/styleVariables";
 
 const CardDivStyled = styled.div`

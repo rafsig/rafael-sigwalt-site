@@ -1,5 +1,5 @@
 import {  useNavigate  } from "react-router-dom";
-import { CallToAction } from "../../components/CallToAction";
+import { CallToAction } from "../../components/Inputs/CallToAction"; 
 import styled from "styled-components";
 import { useEffect } from "react";
 import { pageVisit } from "../../ga4/util";

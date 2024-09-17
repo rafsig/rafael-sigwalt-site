@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Modal from "../../../Modal";
-import { CallToActionLink } from "../../../CallToAction";
+import { CallToActionLink } from "../../../Inputs/CallToAction"; 
 import {  useCertificate, useSetCertificateId } from "../../../../state/hooks/CertificateHook";
 import { handleAnchorClick } from "../../../../ga4/util";
 
