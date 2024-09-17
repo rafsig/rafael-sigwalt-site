@@ -36,9 +36,10 @@ export default function ContactMe() {
     }
 
     return <Section id="contactMe" title="Contact Me" titlePosition="left">
-        <p>Feel free to send me a message, all your data will be encrypted at rest and will only be used in order to respond to you.</p>
+        
         
         <Form onSubmit={submitForm}>
+            <p>Feel free to send me a message, all your data will be encrypted at rest and will only be used in order to respond to you.</p>
             <TextInput 
                 label="Full name"
                 type="text"
