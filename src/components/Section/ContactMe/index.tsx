@@ -30,24 +30,27 @@ export default function ContactMe() {
         
         <Form onSubmit={submitForm}>
             <TextInput 
-                label="Full name*" 
+                label="Full name"
+                type="text"
                 placeholder="Enter your complete name" 
                 value={fullName} 
                 onChange={setFullName} 
                 required/>
             <TextInput 
-                label="E-mail*" 
+                label="E-mail"
+                type="e-mail"
                 placeholder="Enter your contact e-mail" 
                 value={email} 
                 onChange={setEmail} 
                 required/>
             <TextInput 
-                label="Company" 
+                label="Company"
+                type="text" 
                 placeholder="Enter the company you work for" 
                 value={company} 
                 onChange={setCompany} />
             <TextAreaInput 
-                label="Message*" 
+                label="Message" 
                 placeholder="Enter the message" 
                 value={message} 
                 onChange={setMessage} 

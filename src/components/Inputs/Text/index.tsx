@@ -1,14 +1,22 @@
 import styled, { css } from "styled-components";
 import {specialFontColor} from '../../GlobalStyle/styleVariables'
 
+interface LabelProp{
+    required?:boolean;
+}
+
 const FieldContainer = styled.div`
     display: flex;
     flex-direction: column;
 `
 
-const Label = styled.label`
+const Label = styled.label<LabelProp>`
     color:${specialFontColor};
     font-weight: bold;
+    &::after {
+        content: "${(props) => (props.required ? '*' : '')}";
+        color: darkred;
+    } 
 `
 
 const style = css`
@@ -26,13 +34,13 @@ const TextArea = styled.textarea`
 
 `
 
-export function TextInput({value, placeholder, label, required ,onChange}:{value:string, placeholder:string, label:string, required?:boolean, onChange:Function}) {
+export function TextInput({value, type, placeholder, label, required ,onChange}:{value:string, type:string, placeholder:string, label:string, required?:boolean, onChange:Function}) {
     return (
     <FieldContainer>
-        <Label htmlFor={label}>{label}</Label>
+        <Label required={required} htmlFor={label}>{label}</Label>
         <Input 
             name={label} 
-            type="text" 
+            type={type} 
             placeholder={placeholder} 
             value={value}  
             required={required} 
@@ -43,7 +51,7 @@ export function TextInput({value, placeholder, label, required ,onChange}:{value
 export function TextAreaInput({value, placeholder, label, required, onChange}:{value:string, placeholder:string, label:string, required?:boolean, onChange:Function}) {
     return ( 
     <FieldContainer>
-        <Label htmlFor={label}>{label}</Label>  
+        <Label required={required} htmlFor={label}>{label}</Label>  
         <TextArea 
             rows={5} 
             name={label} 
