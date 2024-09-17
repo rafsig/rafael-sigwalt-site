@@ -9,6 +9,8 @@ import EducationPage from "./pages/Education";
 import NotFound from "./pages/NotFound";
 import { RecoilRoot } from "recoil";
 import { initialize } from "./ga4/util";
+import ContactMePage from "./pages/ContactMe";
+import { Suspense } from "react";
 
 
 const ContentContainer = styled.div`
@@ -37,7 +39,9 @@ export default function App() {
     <RecoilRoot>
         <Router>
           <GlobalStyle></GlobalStyle>
+          <Suspense fallback="">
           <Header></Header>
+          </Suspense>
           <MainStyled>
             <ContentContainer>
                 <Routes>
@@ -45,6 +49,7 @@ export default function App() {
                     <Route index element={<Home/>}/>
                     <Route path="education" element={<EducationPage/>}/>
                     <Route path="projectGalery" element={<ProjectGalery/>}/>
+                    <Route path="contactMe" element={<ContactMePage/>}/>
                   </Route>
                   <Route path="/*" element={<NotFound/>}/>
                 </Routes>
