@@ -5,6 +5,17 @@ import { Form } from "../../Inputs/Form";
 import { TextAreaInput, TextInput } from "../../Inputs/Text";
 import { createMessage } from "../../../services/messgageService";
 import { validateCompany, validateEmail, validateFullName, validateMessage } from "./Validations/Validations";
+import styled from "styled-components";
+
+
+interface ResultMessageProp {
+    $isSuccessful:string | undefined
+}
+
+const ResultMessage = styled.p<ResultMessageProp>`
+    color: ${prop => prop.$isSuccessful === "Y"? "darkgreen" : "darkred"};
+    margin:5px;
+`
 
 export default function ContactMe() {
 
@@ -12,6 +23,8 @@ export default function ContactMe() {
     const [email, setEmail] = useState("");
     const [company, setCompany] = useState("");
     const [message, setMessage] = useState("");
+
+    const [successful, setSuccessful] = useState<string>("");
 
     const [emailError, setEmailError] = useState<{isError:boolean, errors:string[]}>({isError:true, errors:[]});
     const [fullNameError, setFullNameError] = useState<{isError:boolean, errors:string[]}>({isError:true, errors:[]});
@@ -21,7 +34,7 @@ export default function ContactMe() {
     function submitForm(event:FormEvent) {
         event.preventDefault();
 
-        createMessage({fullName, email, company, message});
+        createMessage({fullName, email, company, message}, setSuccessful);
 
         setFullName("");
         setEmail("");
@@ -30,7 +43,6 @@ export default function ContactMe() {
     }
 
     return <Section id="contactMe" title="Contact Me" titlePosition="left">
-        
         
         <Form onSubmit={submitForm}>
             <p>Feel free to send me a message, all your data will be encrypted at rest and will only be used in order to respond to you.</p>
@@ -76,6 +88,7 @@ export default function ContactMe() {
                 }}
                 errors={messageError.errors}
                 required/>
+            {successful &&  (successful === "Y" ?  <ResultMessage $isSuccessful={successful}>Thank you for your message.</ResultMessage> : <ResultMessage $isSuccessful={successful}>Unable to send message, please try again later.</ResultMessage>)}
             <CallToAction disabled={emailError.isError || fullNameError.isError || companyError.isError || messageError.isError} type="submit">Submit</CallToAction>
         </Form>
     </Section>
