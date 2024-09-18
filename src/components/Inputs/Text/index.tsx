@@ -39,7 +39,22 @@ const ErrorParagraph = styled.p`
     margin-top:2px;
 `
 
-export function TextInput({value, placeholder, label, required, onChange, type, error}:{value:string, placeholder:string, label:string, required?:boolean, onChange:Function, type:string, error?:string}) { 
+interface MessageErrorContainerProp{
+    $errors?:string[];
+}
+
+const MessageErrorContainer = styled.div<MessageErrorContainerProp>`
+    display: flex;
+    flex-direction: row;
+    justify-content: ${props => (props.$errors && props.$errors.length > 0)? 'space-between': 'right'};
+`
+
+const CharacterCount = styled.p`
+    margin:0;
+    margin-top:2px;
+`
+
+export function TextInput({value, placeholder, label, required, onChange, type, errors, onFocusOut}:{value:string, placeholder:string, label:string, required?:boolean, onChange:Function, type:string, errors?:string[], onFocusOut?:Function}) { 
     return (
 
     <FieldContainer>
@@ -50,12 +65,13 @@ export function TextInput({value, placeholder, label, required, onChange, type, 
             placeholder={placeholder} 
             value={value}  
             required={required} 
-            onChange={e => onChange(e.target.value)}></Input>
-            {error && <ErrorParagraph>{error}</ErrorParagraph>}
+            onChange={e => onChange(e.target.value)}
+            onBlur = {e => {onFocusOut ? onFocusOut(e.target.value) : "";}} ></Input>
+            {errors && errors.map((error, index) => <ErrorParagraph key={index}>{error}</ErrorParagraph>)}
     </FieldContainer>);
 }
 
-export function TextAreaInput({value, placeholder, label, required, onChange}:{value:string, placeholder:string, label:string, required?:boolean, onChange:Function}) {
+export function TextAreaInput({value, placeholder, label, required, onChange, errors, onFocusOut}:{value:string, placeholder:string, label:string, required?:boolean, onChange:Function, errors?:string[], onFocusOut?:Function}) {
     return ( 
     <FieldContainer>
         <Label required={required} htmlFor={label}>{label}</Label>  
@@ -65,7 +81,14 @@ export function TextAreaInput({value, placeholder, label, required, onChange}:{v
             placeholder={placeholder} 
             value={value}  
             required={required} 
-            onChange={e => onChange(e.target.value)}></TextArea>
+            onChange={e => onChange(e.target.value)}
+            onBlur={e => {onFocusOut ? onFocusOut(e.target.value) : "";}}></TextArea>
+            <MessageErrorContainer $errors={errors}>
+                <div>
+                    {errors && errors.map((error, index) => <ErrorParagraph key={index}>{error}</ErrorParagraph>)}
+                </div>
+                <CharacterCount>{value.length + "/200"}</CharacterCount>
+            </MessageErrorContainer>
     </FieldContainer>
     )
 }

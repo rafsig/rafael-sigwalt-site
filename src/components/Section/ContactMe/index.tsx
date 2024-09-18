@@ -4,6 +4,7 @@ import { CallToAction } from "../../Inputs/CallToAction";
 import { Form } from "../../Inputs/Form";
 import { TextAreaInput, TextInput } from "../../Inputs/Text";
 import { createMessage } from "../../../services/messgageService";
+import { validateCompany, validateEmail, validateFullName, validateMessage } from "./Validations/Validations";
 
 export default function ContactMe() {
 
@@ -12,9 +13,10 @@ export default function ContactMe() {
     const [company, setCompany] = useState("");
     const [message, setMessage] = useState("");
 
-    const [error, setError] = useState<{error:boolean, email?:string}>({error:false});
-
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const [emailError, setEmailError] = useState<{isError:boolean, errors:string[]}>({isError:true, errors:[]});
+    const [fullNameError, setFullNameError] = useState<{isError:boolean, errors:string[]}>({isError:true, errors:[]});
+    const [companyError, setCompanyError] = useState<{isError:boolean, errors:string[]}>({isError:true, errors:[]});
+    const [messageError,setMessageError] = useState<{isError:boolean, errors:string[]}>({isError:true, errors:[]});
 
     function submitForm(event:FormEvent) {
         event.preventDefault();
@@ -25,14 +27,6 @@ export default function ContactMe() {
         setEmail("");
         setCompany("");
         setMessage("");
-    }
-
-    function validateEmail() {
-        if(!emailPattern.test(email)){
-            setError({error:true, email:"Invalid Email"})
-        } else {
-            setError({error:false})
-        }
     }
 
     return <Section id="contactMe" title="Contact Me" titlePosition="left">
@@ -46,28 +40,43 @@ export default function ContactMe() {
                 placeholder="Enter your complete name" 
                 value={fullName} 
                 onChange={setFullName} 
+                onFocusOut={(value:string) => {
+                    validateFullName(value, "Full name" ,setFullNameError);
+                }}
+                errors={fullNameError.errors}
                 required/>
             <TextInput 
                 label="E-mail"
-                type="e-mail"
+                type="email"
                 placeholder="Enter your contact e-mail" 
                 value={email} 
-                onChange={(value:string) => {validateEmail(); setEmail(value);}} 
-                error={error.email}
+                onChange={setEmail}
+                onFocusOut={(value:string) => {
+                    validateEmail(value, setEmailError);
+                }} 
+                errors={emailError.errors}
                 required/>
             <TextInput 
                 label="Company"
                 type="text" 
                 placeholder="Enter the company you work for" 
                 value={company} 
-                onChange={setCompany} />
+                onChange={setCompany}
+                onFocusOut={(value:string) => {
+                    validateCompany(value, "Company" , setCompanyError);
+                }}
+                errors={companyError.errors}  />
             <TextAreaInput 
                 label="Message" 
                 placeholder="Enter the message" 
                 value={message} 
-                onChange={setMessage} 
+                onChange={setMessage}
+                onFocusOut={(value:string) => {
+                    validateMessage(value, setMessageError);
+                }}
+                errors={messageError.errors}
                 required/>
-            <CallToAction disabled={error.error} type="submit">Submit</CallToAction>
+            <CallToAction disabled={emailError.isError || fullNameError.isError || companyError.isError || messageError.isError} type="submit">Submit</CallToAction>
         </Form>
     </Section>
 }
