@@ -28,7 +28,7 @@ export default function ContactMe() {
 
     const [emailError, setEmailError] = useState<{isError:boolean, errors:string[]}>({isError:true, errors:[]});
     const [fullNameError, setFullNameError] = useState<{isError:boolean, errors:string[]}>({isError:true, errors:[]});
-    const [companyError, setCompanyError] = useState<{isError:boolean, errors:string[]}>({isError:true, errors:[]});
+    const [companyError, setCompanyError] = useState<{isError:boolean, errors:string[]}>({isError:false, errors:[]});
     const [messageError,setMessageError] = useState<{isError:boolean, errors:string[]}>({isError:true, errors:[]});
 
     function submitForm(event:FormEvent) {
@@ -40,6 +40,13 @@ export default function ContactMe() {
         setEmail("");
         setCompany("");
         setMessage("");
+
+        setEmailError({isError:true, errors:[]});
+        setFullNameError({isError:true, errors:[]});
+        setCompanyError({isError:false, errors:[]});
+        setMessageError({isError:true, errors:[]});
+
+        setTimeout(()=>setSuccessful(""), 3000);
     }
 
     return <Section id="contactMe" title="Contact Me" titlePosition="left">
@@ -51,10 +58,10 @@ export default function ContactMe() {
                 type="text"
                 placeholder="Enter your complete name" 
                 value={fullName} 
-                onChange={setFullName} 
-                onFocusOut={(value:string) => {
-                    validateFullName(value, "Full name" ,setFullNameError);
-                }}
+                onChange={(value:string) => { 
+                    validateFullName(value, "Full name" ,setFullNameError); 
+                    setFullName(value);}
+                } 
                 errors={fullNameError.errors}
                 required/>
             <TextInput 
@@ -62,10 +69,10 @@ export default function ContactMe() {
                 type="email"
                 placeholder="Enter your contact e-mail" 
                 value={email} 
-                onChange={setEmail}
-                onFocusOut={(value:string) => {
-                    validateEmail(value, setEmailError);
-                }} 
+                onChange={(value:string) =>{
+                    validateEmail(value, setEmailError); 
+                    setEmail(value);}
+                }
                 errors={emailError.errors}
                 required/>
             <TextInput 
@@ -73,19 +80,19 @@ export default function ContactMe() {
                 type="text" 
                 placeholder="Enter the company you work for" 
                 value={company} 
-                onChange={setCompany}
-                onFocusOut={(value:string) => {
+                onChange={(value:string) => {
                     validateCompany(value, "Company" , setCompanyError);
-                }}
+                    setCompany(value);}
+                }
                 errors={companyError.errors}  />
             <TextAreaInput 
                 label="Message" 
                 placeholder="Enter the message" 
                 value={message} 
-                onChange={setMessage}
-                onFocusOut={(value:string) => {
+                onChange={(value:string) => {
                     validateMessage(value, setMessageError);
-                }}
+                    setMessage(value)}
+                }
                 errors={messageError.errors}
                 required/>
             {successful &&  (successful === "Y" ?  <ResultMessage $isSuccessful={successful}>Thank you for your message.</ResultMessage> : <ResultMessage $isSuccessful={successful}>Unable to send message, please try again later.</ResultMessage>)}

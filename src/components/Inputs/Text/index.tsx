@@ -54,7 +54,7 @@ const CharacterCount = styled.p`
     margin-top:2px;
 `
 
-export function TextInput({value, placeholder, label, required, onChange, type, errors, onFocusOut}:{value:string, placeholder:string, label:string, required?:boolean, onChange:Function, type:string, errors?:string[], onFocusOut?:Function}) { 
+export function TextInput({value, placeholder, label, required, onChange, type, errors}:{value:string, placeholder:string, label:string, required?:boolean, onChange:Function, type:string, errors?:string[]}) { 
     return (
 
     <FieldContainer>
@@ -66,12 +66,12 @@ export function TextInput({value, placeholder, label, required, onChange, type, 
             value={value}  
             required={required} 
             onChange={e => onChange(e.target.value)}
-            onBlur = {e => {onFocusOut ? onFocusOut(e.target.value) : "";}} ></Input>
+            />
             {errors && errors.map((error, index) => <ErrorParagraph key={index}>{error}</ErrorParagraph>)}
     </FieldContainer>);
 }
 
-export function TextAreaInput({value, placeholder, label, required, onChange, errors, onFocusOut}:{value:string, placeholder:string, label:string, required?:boolean, onChange:Function, errors?:string[], onFocusOut?:Function}) {
+export function TextAreaInput({value, placeholder, label, required, onChange, errors}:{value:string, placeholder:string, label:string, required?:boolean, onChange:Function, errors?:string[]}) {
     return ( 
     <FieldContainer>
         <Label required={required} htmlFor={label}>{label}</Label>  
@@ -82,7 +82,7 @@ export function TextAreaInput({value, placeholder, label, required, onChange, er
             value={value}  
             required={required} 
             onChange={e => onChange(e.target.value)}
-            onBlur={e => {onFocusOut ? onFocusOut(e.target.value) : "";}}></TextArea>
+            />
             <MessageErrorContainer $errors={errors}>
                 <div>
                     {errors && errors.map((error, index) => <ErrorParagraph key={index}>{error}</ErrorParagraph>)}
