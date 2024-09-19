@@ -46,7 +46,7 @@ export default function ContactMe() {
         setCompanyError({isError:false, errors:[]});
         setMessageError({isError:true, errors:[]});
 
-        setTimeout(()=>setSuccessful(""), 3000);
+        setTimeout(()=>setSuccessful(""), 10000);
     }
 
     return <Section id="contactMe" title="Contact Me" titlePosition="left">
