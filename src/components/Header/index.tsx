@@ -33,6 +33,9 @@ const TitleStyled = styled.h1`
     margin-left: 50px;
     margin:20px 50px;
     @media (max-width:1400px) {
+        font-size:2.5em
+    }
+    @media (max-width:500px) {
         font-size:2em
     }
 `
