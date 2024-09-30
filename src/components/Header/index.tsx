@@ -33,7 +33,7 @@ const TitleStyled = styled.h1`
     margin-left: 50px;
     margin:20px 50px;
     @media (max-width:1400px) {
-        font-size:2.5em
+        font-size:2em
     }
 `
 const Container = styled.div`
